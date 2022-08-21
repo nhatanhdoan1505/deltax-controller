@@ -1,3 +1,3 @@
+export * from "./dashboard";
 export * from "./common";
-export * from "./plugin";
-export * from "./device";
+export * from "./layout";

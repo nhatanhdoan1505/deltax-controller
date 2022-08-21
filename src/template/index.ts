@@ -1,1 +1,1 @@
-export * from "./main-page-template";
+export * from "./dashboard-template";

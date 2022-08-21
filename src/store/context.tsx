@@ -1,7 +1,15 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
-import { Action, InitialStateType } from ".";
+import { Action, InitialStateType, dashboardReducer } from ".";
 
-const initialState: InitialStateType = {};
+const initialState: InitialStateType = {
+  module: 4,
+  dashboard: {
+    plugin: null,
+    device: null,
+    deviceMenuItem: 1,
+    type: "full-screen",
+  },
+};
 
 const AppContext = createContext<{
   state: InitialStateType;
@@ -11,8 +19,9 @@ const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const mainReducer = ({}: InitialStateType, action: Action) => ({
-  //   controller: controllerReducer(controller, action),
+const mainReducer = ({ dashboard }: InitialStateType, action: Action) => ({
+  dashboard: dashboardReducer(dashboard, action),
+  module: 4,
 });
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
