@@ -13,13 +13,13 @@ export function OptionButton({ icon, color, type, screen }: IScreenOption) {
         plugin:
           (type === "close" && screen === "PLUGIN") ||
           (type === "full-screen" && screen === "DEVICE")
-            ? null
-            : state.dashboard.plugin,
+            ? { ...state.dashboard.plugin, screen: null }
+            : { ...state.dashboard.plugin },
         device:
           (type === "close" && screen === "DEVICE") ||
           (type === "full-screen" && screen === "PLUGIN")
-            ? null
-            : state.dashboard.device,
+            ? { ...state.dashboard.device, screen: null }
+            : { ...state.dashboard.device },
         type: type !== "close" ? type : "full-screen",
       },
     });

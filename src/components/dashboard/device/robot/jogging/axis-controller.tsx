@@ -1,10 +1,10 @@
-import { HStack, useMediaQuery, VStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 import { useHeightQuery } from "hook";
 import { IAxisSlider } from "type";
 import { AxisSlider } from "ui";
 
 export function AxisController() {
-  const query = useHeightQuery({ value: 550 });
+  const query = useHeightQuery({ value: 600 });
 
   const initialValues: IAxisSlider[] = [
     { name: "4-Axis", value: 30, color: "green" },

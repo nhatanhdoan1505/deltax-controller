@@ -1,4 +1,4 @@
-import { Tooltip, VStack, Text } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AppContext, DashboardEvent } from "store";
 import { IDevice, IPlugin } from "type";
@@ -17,8 +17,14 @@ export function SidebarButton({
     dispatch({
       type: DashboardEvent.SET_SCREEN,
       payload: {
-        plugin: type === "PLUGIN" ? index : state.dashboard.plugin,
-        device: type === "DEVICE" ? index : state.dashboard.device,
+        plugin:
+          type === "PLUGIN"
+            ? { ...state.dashboard.plugin, screen: index }
+            : { ...state.dashboard.plugin },
+        device:
+          type === "DEVICE"
+            ? { ...state.dashboard.device, screen: index }
+            : { ...state.dashboard.device },
         type: state.dashboard.type,
       },
     });
@@ -31,16 +37,15 @@ export function SidebarButton({
       _hover={{ cursor: "pointer" }}
       onClick={onClickHandler}
     >
-      <Tooltip label={name} shouldWrapChildren={true}>
-        {(type === "PLUGIN" && dashboard.plugin === index) ||
-        (type === "DEVICE" && dashboard.device === index)
-          ? iconActive
-          : icon}
-      </Tooltip>
+      {(type === "PLUGIN" && dashboard.plugin.screen === index) ||
+      (type === "DEVICE" && dashboard.device.screen === index)
+        ? iconActive
+        : icon}
+
       <Text
         color={
-          (dashboard.device === index && type === "DEVICE") ||
-          (dashboard.plugin === index && type === "PLUGIN")
+          (dashboard.device.screen === index && type === "DEVICE") ||
+          (dashboard.plugin.screen === index && type === "PLUGIN")
             ? "#48BB78"
             : "black"
         }

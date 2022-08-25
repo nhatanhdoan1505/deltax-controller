@@ -12,7 +12,7 @@ export function StepJogging() {
     { name: "100", type: "100", color: "gray" },
   ];
   return (
-    <GridLayout columns={6}>
+    <GridLayout props={{ gridColumn: 6, gap: 1 }}>
       <GridItem w="100%" h="100%">
         <VStack
           w="100%"

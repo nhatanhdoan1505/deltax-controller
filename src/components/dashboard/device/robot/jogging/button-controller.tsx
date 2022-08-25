@@ -1,13 +1,13 @@
-import { Grid, GridItem, VStack } from "@chakra-ui/react";
+import { GridItem, VStack } from "@chakra-ui/react";
 import { GridLayout } from "components";
 import { JoggingButton } from "ui";
 import { Joystick } from ".";
 
 export function ButtonController() {
   return (
-    <GridLayout columns={4} gap={2}>
+    <GridLayout props={{ gridColumn: 4, gap: 2 }}>
       <GridItem colSpan={3}>
-        <GridLayout rows={3} columns={3} gap={0}>
+        <GridLayout props={{ gridRow: 3, gridColumn: 3, gap: 0, w: "100%" }}>
           <GridItem></GridItem>
           <GridItem>
             <JoggingButton type="Forward" name="Forward" color="gray" />
@@ -35,7 +35,9 @@ export function ButtonController() {
         </GridLayout>
       </GridItem>
       <GridItem colSpan={1}>
-        <GridLayout columns={1} rows={2} gap={2} h="100%">
+        <GridLayout
+          props={{ gridColumn: 1, gridRow: 2, gap: 2, w: "100%", h: "100%" }}
+        >
           <GridItem>
             <VStack w="100%" h="100%" justifyContent="center">
               <JoggingButton type="Up" name="Up" color="gray" />

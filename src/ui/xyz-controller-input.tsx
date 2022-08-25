@@ -1,4 +1,4 @@
-import { Button, GridItem, HStack, Input, Text } from "@chakra-ui/react";
+import { GridItem, HStack, Input, Text } from "@chakra-ui/react";
 import { useSlideInput } from "hook";
 
 export function XYZControllerInput({

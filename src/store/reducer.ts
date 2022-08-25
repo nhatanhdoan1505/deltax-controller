@@ -15,8 +15,10 @@ export const dashboardReducer = (
       return {
         ...payload,
         type:
-          payload.plugin && payload.device && payload.type === "full-screen"
-            ? "horizontal-split"
+          payload.plugin.screen &&
+          payload.device.screen &&
+          payload.type === "full-screen"
+            ? "vertical-split"
             : payload.type,
       };
     default:

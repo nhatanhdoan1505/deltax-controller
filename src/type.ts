@@ -37,6 +37,7 @@ export interface IJoggingButton {
 export interface IMenuButton {
   name: string | JSX.Element;
   index: number;
+  rootIndex?: number;
   color: ThemeTypings["colorSchemes"];
 }
 

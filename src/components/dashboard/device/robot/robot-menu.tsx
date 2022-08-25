@@ -1,8 +1,12 @@
+import { AppContext } from "store";
 import { GridLayout } from "components";
+import { useContext } from "react";
 import { IMenuButton } from "type";
-import { RobotMenuButton } from "ui";
+import { MenuButton } from "ui";
 
 export function RobotMenu() {
+  const { state } = useContext(AppContext);
+  const { dashboard } = state;
   const initialValues: IMenuButton[] = [
     { index: 1, name: "Jogging", color: "green" },
     { index: 2, name: "I/O", color: "green" },
@@ -12,9 +16,15 @@ export function RobotMenu() {
   ];
 
   return (
-    <GridLayout columns={5}>
+    <GridLayout
+      props={{ gridColumn: initialValues.length, w: "100%", h: "auto", gap: 2 }}
+    >
       {initialValues.map((item, index) => (
-        <RobotMenuButton {...item} key={index} />
+        <MenuButton
+          {...item}
+          key={index}
+          rootIndex={dashboard.device.robot.screen!}
+        />
       ))}
     </GridLayout>
   );

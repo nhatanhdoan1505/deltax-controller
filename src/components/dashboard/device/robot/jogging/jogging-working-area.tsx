@@ -16,7 +16,7 @@ export function JoggingWorkingArea() {
 
   return dashboard.type === "full-screen" ? (
     <VStack w="100%" h="100%" justifyContent="space-around">
-      <GridLayout columns={5}>
+      <GridLayout props={{ gridColumn: 5, w: "100%" }}>
         <GridItem>
           <JoggingButton color="teal" name="HOME" type="HOME" />
         </GridItem>
@@ -31,7 +31,7 @@ export function JoggingWorkingArea() {
   ) : dashboard.type === "horizontal-split" ? (
     <VStack w="100%" h="100%" spacing={8} justifyContent="space-around">
       <VStack w="100%" justifyContent="flex-start" spacing={10}>
-        <GridLayout columns={5}>
+        <GridLayout props={{ gridColumn: 5, w: "100%" }}>
           <GridItem>
             <JoggingButton color="teal" name="HOME" type="HOME" />
           </GridItem>
@@ -39,12 +39,12 @@ export function JoggingWorkingArea() {
             <StepJogging />
           </GridItem>
         </GridLayout>
-        <GridLayout columns={2}>
-          <GridItem>
-            <XYZController />
-          </GridItem>
+        <GridLayout props={{ gridRow: 2, gap: 2, w: "100%" }}>
           <GridItem>
             <AxisController />
+          </GridItem>
+          <GridItem>
+            <XYZController />
           </GridItem>
         </GridLayout>
       </VStack>
@@ -54,7 +54,7 @@ export function JoggingWorkingArea() {
     </VStack>
   ) : (
     <VStack w="100%" h="100%" justifyContent="space-around" pb={4}>
-      <GridLayout columns={7}>
+      <GridLayout props={{ gridColumn: 7 }}>
         <GridItem>
           <JoggingButton color="teal" name="HOME" type="HOME" />
         </GridItem>

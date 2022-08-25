@@ -4,9 +4,11 @@ import { Action, InitialStateType, dashboardReducer } from ".";
 const initialState: InitialStateType = {
   module: 4,
   dashboard: {
-    plugin: null,
-    device: null,
-    deviceMenuItem: 1,
+    plugin: {
+      screen: null,
+      objectDetecting: { screen: 1, viewer: { configuration: 1, tool: null } },
+    },
+    device: { screen: null, robot: { screen: 1 } },
     type: "full-screen",
   },
 };

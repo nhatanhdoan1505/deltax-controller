@@ -1,4 +1,4 @@
-import { useMediaQuery, UseMediaQueryOptions } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 
 export function useHeightQuery({ value }: { value: number }) {
   const [queryValue] = useMediaQuery(`(max-height: ${value}px)`);

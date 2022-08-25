@@ -10,7 +10,7 @@ export function AxisSlider({ name, value, color }: IAxisSlider) {
     setStartValue,
     onMouseMoveHandler,
   } = useSlideInput({ value });
-  const query = useHeightQuery({ value: 550 });
+  const query = useHeightQuery({ value: 600 });
 
   return (
     <HStack w="100%">

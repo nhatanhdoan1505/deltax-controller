@@ -8,7 +8,7 @@ export function XYZController() {
     { value: 30, name: "Z" },
   ];
   return (
-    <GridLayout columns={3}>
+    <GridLayout props={{ gridColumn: 3 }}>
       {initialValues.map((item, index) => (
         <XYZControllerInput {...item} key={index} />
       ))}

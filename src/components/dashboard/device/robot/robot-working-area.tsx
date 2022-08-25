@@ -7,7 +7,7 @@ import { RobotMenu } from "components";
 export function RobotWorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
-  return dashboard.deviceMenuItem === 1 ? (
+  return dashboard.device.robot.screen === 1 ? (
     <VStack w="100%" h="100%">
       <RobotMenu />
       <JoggingWorkingArea />

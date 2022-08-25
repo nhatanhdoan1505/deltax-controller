@@ -1,12 +1,12 @@
-import { HStack, useMediaQuery } from "@chakra-ui/react";
-import { AppContext } from "store";
+import { HStack } from "@chakra-ui/react";
+import { useWidthQuery } from "hook";
 import { useContext } from "react";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { TbFlipHorizontal, TbFlipVertical } from "react-icons/tb";
+import { AppContext } from "store";
 import { IScreenOption } from "type";
 import { OptionButton } from "ui";
-import { useWidthQuery } from "hook";
 
 export function ScreenOption({ screen }: { screen: "PLUGIN" | "DEVICE" }) {
   const query = useWidthQuery({ value: 792 });

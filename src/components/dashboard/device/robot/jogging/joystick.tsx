@@ -1,12 +1,8 @@
-import { AppContext } from "store";
-import { useContext } from "react";
-import { Joystick as JoystickComponent } from "react-joystick-component";
 import { useHeightQuery } from "hook";
+import { Joystick as JoystickComponent } from "react-joystick-component";
 
 export function Joystick() {
-  const queryHeight460 = useHeightQuery({ value: 560 });
-  const { state } = useContext(AppContext);
-  const { dashboard } = state;
+  const queryHeight460 = useHeightQuery({ value: 450 });
 
   return (
     <JoystickComponent

@@ -9,7 +9,7 @@ export function VerticalSplit({
   deviceScreen: React.ReactNode;
 }) {
   return (
-    <GridLayout w="100%" h="100vh" columns={2} gap={0}>
+    <GridLayout props={{ h: "100vh", gridColumn: 2, gap: 0 }}>
       <GridItem w="100%" h="100%">
         {pluginScreen}
       </GridItem>

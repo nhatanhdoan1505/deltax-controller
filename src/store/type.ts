@@ -12,16 +12,27 @@ export type ReducerAction<T, P> = {
 export enum DashboardEvent {
   SET_SCREEN = "SET_SCREEN",
 }
+
+export interface PluginType {
+  screen: number | null;
+  objectDetecting: {
+    screen: number | null;
+    viewer: { configuration: number | null; tool: number | null };
+  };
+}
+
+export interface DevicePlugin {
+  screen: number | null;
+  robot: { screen: number | null };
+}
 export interface DashboardType {
-  deviceMenuItem: number | null;
-  plugin: number | null;
-  device: number | null;
+  plugin: PluginType;
+  device: DevicePlugin;
   type: "full-screen" | "horizontal-split" | "vertical-split";
 }
 
 export interface DashboardPayload {
-  plugin?: number | null;
-  device: number | null;
-  deviceMenuItem?: number | null;
-  type?: "full-screen" | "horizontal-split" | "vertical-split";
+  plugin?: PluginType;
+  device?: DevicePlugin;
+  type: "full-screen" | "horizontal-split" | "vertical-split";
 }
