@@ -38,11 +38,25 @@ export interface IMenuButton {
   name: string | JSX.Element;
   index: number;
   rootIndex?: number;
+  onClick?: () => void;
   color: ThemeTypings["colorSchemes"];
+}
+
+export interface XYZButton {
+  value: number;
+  name: string;
 }
 
 export interface IAxisSlider {
   name: string;
   value: number;
   color: ThemeTypings["colorSchemes"];
+}
+
+export interface IStep extends IJoggingButton {}
+
+export interface IJoggingProps {
+  xyz: XYZButton[];
+  step: IStep[];
+  axis: IAxisSlider[];
 }

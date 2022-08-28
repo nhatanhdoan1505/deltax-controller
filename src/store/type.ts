@@ -11,9 +11,10 @@ export type ReducerAction<T, P> = {
 
 export enum DashboardEvent {
   SET_SCREEN = "SET_SCREEN",
+  SET_ROBOT_MENU = "SET_ROBOT_MENU",
 }
 
-export interface PluginType {
+export interface  PluginType {
   screen: number | null;
   objectDetecting: {
     screen: number | null;
@@ -34,5 +35,5 @@ export interface DashboardType {
 export interface DashboardPayload {
   plugin?: PluginType;
   device?: DevicePlugin;
-  type: "full-screen" | "horizontal-split" | "vertical-split";
+  type?: "full-screen" | "horizontal-split" | "vertical-split";
 }

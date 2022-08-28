@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 export function Robot() {
   const robotRef = useRef<any>(null!);
-  const fbx = useFBX("/model/v5demo.fbx");
+  const fbx = useFBX("/model/v5.fbx");
   useEffect(() => {
     if (robotRef.current) {
       console.log(robotRef.current);

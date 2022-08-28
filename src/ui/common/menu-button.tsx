@@ -1,7 +1,13 @@
 import { Button, GridItem } from "@chakra-ui/react";
 import { IMenuButton } from "type";
 
-export function MenuButton({ index, name, color, rootIndex }: IMenuButton) {
+export function MenuButton({
+  index,
+  name,
+  color,
+  rootIndex,
+  onClick,
+}: IMenuButton) {
   return (
     <GridItem w="100%">
       <Button
@@ -13,6 +19,7 @@ export function MenuButton({ index, name, color, rootIndex }: IMenuButton) {
         whiteSpace="pre-line"
         size="sm"
         variant="outline"
+        onClick={onClick}
       >
         {name}
       </Button>

@@ -5,9 +5,9 @@ import { Joystick } from ".";
 
 export function ButtonController() {
   return (
-    <GridLayout props={{ gridColumn: 4, gap: 2 }}>
+    <GridLayout gridColumn={4} gap={2}>
       <GridItem colSpan={3}>
-        <GridLayout props={{ gridRow: 3, gridColumn: 3, gap: 0, w: "100%" }}>
+        <GridLayout gridRow={ 3} gridColumn={3} gap={0} w= "100%" >
           <GridItem></GridItem>
           <GridItem>
             <JoggingButton type="Forward" name="Forward" color="gray" />
@@ -35,9 +35,7 @@ export function ButtonController() {
         </GridLayout>
       </GridItem>
       <GridItem colSpan={1}>
-        <GridLayout
-          props={{ gridColumn: 1, gridRow: 2, gap: 2, w: "100%", h: "100%" }}
-        >
+        <GridLayout gridColumn={1} gridRow={2} gap={2} w="100%" h="100%">
           <GridItem>
             <VStack w="100%" h="100%" justifyContent="center">
               <JoggingButton type="Up" name="Up" color="gray" />

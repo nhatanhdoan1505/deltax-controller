@@ -1,13 +1,10 @@
 import { Grid, SystemProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
-export function GridLayout({
-  props,
-  children,
-}: {
-  props: SystemProps;
+interface IProps extends SystemProps {
   children: ReactNode;
-}) {
+}
+export function GridLayout({ children, ...props }: IProps) {
   return (
     <Grid
       {...props}

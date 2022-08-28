@@ -7,17 +7,17 @@ export function WorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  return !dashboard.device.screen && !dashboard.plugin.screen ? (
+  return !dashboard.device?.screen && !dashboard.plugin?.screen ? (
     <Scene />
   ) : dashboard.type === "full-screen" &&
-    dashboard.plugin.screen &&
-    !dashboard.device.screen ? (
+    dashboard.plugin?.screen &&
+    !dashboard.device?.screen ? (
     <FullScreen>
       <PluginWorkingArea />
     </FullScreen>
   ) : dashboard.type === "full-screen" &&
-    dashboard.device.screen &&
-    !dashboard.plugin.screen ? (
+    dashboard.device?.screen &&
+    !dashboard.plugin?.screen ? (
     <FullScreen>
       <DeviceWorkingArea />
     </FullScreen>

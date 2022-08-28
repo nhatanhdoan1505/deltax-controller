@@ -1,11 +1,11 @@
-import { AppContext } from "store";
+import { AppContext, DashboardEvent } from "store";
 import { GridLayout } from "components";
 import { useContext } from "react";
 import { IMenuButton } from "type";
 import { MenuButton } from "ui";
 
 export function RobotMenu() {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const { dashboard } = state;
   const initialValues: IMenuButton[] = [
     { index: 1, name: "Jogging", color: "green" },
@@ -16,14 +16,24 @@ export function RobotMenu() {
   ];
 
   return (
-    <GridLayout
-      props={{ gridColumn: initialValues.length, w: "100%", h: "auto", gap: 2 }}
-    >
+    <GridLayout gridColumn={initialValues.length} w="100%" h="auto" gap={2}>
       {initialValues.map((item, index) => (
         <MenuButton
           {...item}
           key={index}
-          rootIndex={dashboard.device.robot.screen!}
+          rootIndex={dashboard.device?.robot?.screen!}
+          onClick={() => {
+            console.log("aaa");
+            dispatch({
+              type: DashboardEvent.SET_ROBOT_MENU,
+              payload: {
+                device: {
+                  ...dashboard.device,
+                  robot: { screen: item.index },
+                },
+              },
+            });
+          }}
         />
       ))}
     </GridLayout>

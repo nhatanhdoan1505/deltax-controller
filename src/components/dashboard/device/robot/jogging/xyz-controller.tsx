@@ -1,15 +1,11 @@
 import { GridLayout } from "components";
+import { XYZButton } from "type";
 import { XYZControllerInput } from "ui";
 
-export function XYZController() {
-  const initialValues = [
-    { value: 30, name: "X" },
-    { value: 30, name: "Y" },
-    { value: 30, name: "Z" },
-  ];
+export function XYZController({ xyz }: { xyz: XYZButton[] }) {
   return (
-    <GridLayout props={{ gridColumn: 3 }}>
-      {initialValues.map((item, index) => (
+    <GridLayout gridColumn={3} gap={2}>
+      {xyz.map((item, index) => (
         <XYZControllerInput {...item} key={index} />
       ))}
     </GridLayout>

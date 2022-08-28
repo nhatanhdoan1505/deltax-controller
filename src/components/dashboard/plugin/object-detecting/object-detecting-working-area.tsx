@@ -7,7 +7,7 @@ export function ObjectDetectingWorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  return dashboard.plugin.objectDetecting.screen === 1 ? (
+  return dashboard.plugin?.objectDetecting.screen === 1 ? (
     <VStack w="100%" h="100%">
       <ObjectDetectingMenu />
       <ViewerWorkingArea />

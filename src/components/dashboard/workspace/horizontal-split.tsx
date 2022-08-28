@@ -9,7 +9,7 @@ export function HorizontalSplit({
   deviceScreen: React.ReactNode;
 }) {
   return (
-    <GridLayout props={{ h: "100%", gridRow: 2, gap: 0 }}>
+    <GridLayout h="100%" gridRow={2} gap={0}>
       <GridItem w="100%" h="100%">
         {pluginScreen}
       </GridItem>

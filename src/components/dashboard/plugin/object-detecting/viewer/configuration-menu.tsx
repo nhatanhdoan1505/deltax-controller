@@ -13,14 +13,12 @@ export function ConfigurationMenu() {
     { index: 3, name: "Origin", color: "green" },
   ];
   return (
-    <GridLayout
-      props={{ gridRow: initialValues.length, w: "auto", h: "100%", gap: 2 }}
-    >
+    <GridLayout gridRow={initialValues.length} w="auto" h="100%" gap={2}>
       {initialValues.map((item, index) => (
         <MenuButton
           {...item}
           key={index}
-          rootIndex={dashboard.plugin.objectDetecting.viewer.configuration!}
+          rootIndex={dashboard.plugin?.objectDetecting.viewer.configuration!}
         />
       ))}
     </GridLayout>

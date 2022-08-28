@@ -15,12 +15,24 @@ export const dashboardReducer = (
       return {
         ...payload,
         type:
-          payload.plugin.screen &&
-          payload.device.screen &&
+          payload.plugin?.screen &&
+          payload.device?.screen &&
           payload.type === "full-screen"
             ? "vertical-split"
             : payload.type,
       };
+    case DashboardEvent.SET_ROBOT_MENU:
+      return {
+        ...state,
+        device: {
+          ...state.device,
+          robot: {
+            ...state.device?.robot,
+            screen: action.payload.device?.robot?.screen!,
+          },
+        },
+      };
+
     default:
       return state;
   }

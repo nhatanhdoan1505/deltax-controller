@@ -15,12 +15,12 @@ export function ObjectDetectingMenu() {
   ];
 
   return (
-    <GridLayout props={{ gridColumn: initialValues.length, gap: 2 }}>
+    <GridLayout gridColumn={initialValues.length} gap={2}>
       {initialValues.map((item, index) => (
         <MenuButton
           {...item}
           key={index}
-          rootIndex={dashboard.plugin.objectDetecting.screen!}
+          rootIndex={dashboard.plugin?.objectDetecting.screen!}
         />
       ))}
     </GridLayout>

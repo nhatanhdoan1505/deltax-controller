@@ -14,12 +14,12 @@ export function ToolMenu() {
     { index: 4, name: "Mapping Point Tool", color: "green" },
   ];
   return (
-    <GridLayout props={{ gridColumn: initialValues.length, gap: 2 }}>
+    <GridLayout gridColumn={initialValues.length} gap={2}>
       {initialValues.map((item, index) => (
         <MenuButton
           {...item}
           key={index}
-          rootIndex={dashboard.plugin.objectDetecting.viewer.tool!}
+          rootIndex={dashboard.plugin?.objectDetecting.viewer.tool!}
         />
       ))}
     </GridLayout>

@@ -1,5 +1,5 @@
-import { GridItem, HStack, Input, Text } from "@chakra-ui/react";
-import { useSlideInput } from "hook";
+import { GridItem, HStack, Text } from "@chakra-ui/react";
+import { NumberInput } from ".";
 
 export function XYZControllerInput({
   value,
@@ -8,28 +8,11 @@ export function XYZControllerInput({
   value: number;
   name: string;
 }) {
-  const {
-    number,
-    setNumber,
-    onTouchMoveHandler,
-    setStartValue,
-    onMouseMoveHandler,
-  } = useSlideInput({ value });
-
   return (
     <GridItem w="100%">
       <HStack w="100%">
         <Text fontWeight="bold">{name}</Text>
-        <Input
-          type="number"
-          value={number}
-          onChange={(e) => setNumber(+e.target.value)}
-          onTouchMove={onTouchMoveHandler}
-          onTouchEnd={() => setStartValue(null!)}
-          onMouseDown={(e) => setStartValue(e.clientX)}
-          onMouseUp={() => setStartValue(null!)}
-          onMouseMove={onMouseMoveHandler}
-        />
+        <NumberInput value={value} />
       </HStack>
     </GridItem>
   );

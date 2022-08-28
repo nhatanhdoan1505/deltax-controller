@@ -1,6 +1,7 @@
 import { Button, HStack, Input, Text } from "@chakra-ui/react";
 import { useHeightQuery, useSlideInput } from "hook";
 import { IAxisSlider } from "type";
+import { NumberInput } from ".";
 
 export function AxisSlider({ name, value, color }: IAxisSlider) {
   const {

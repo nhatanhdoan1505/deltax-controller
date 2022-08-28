@@ -7,7 +7,7 @@ export function DeviceWorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  return dashboard.device.screen ? (
+  return dashboard.device?.screen ? (
     <ScreenLayout screen="DEVICE">
       {dashboard.device.screen === 1 ? <RobotWorkingArea /> : null}
     </ScreenLayout>
