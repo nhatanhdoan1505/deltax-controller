@@ -1,1 +1,2 @@
-export * from "./dashboard-template";
+export * from "./initial-value.type";
+export * from "./dashboard";

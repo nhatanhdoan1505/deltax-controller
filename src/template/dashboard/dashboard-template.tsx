@@ -1,5 +1,6 @@
 import { HStack, Text, Icon } from "@chakra-ui/react";
-import { DeviceSidebar, PluginSidebar, WorkingArea } from "components";
+import { DeviceSidebar, PluginSidebar } from "components";
+import { WorkingArea } from "..";
 import { TbZoomPan } from "react-icons/tb";
 import { GiStoneWheel, GiMovementSensor, GiRobotLeg } from "react-icons/gi";
 import { IMainPageTemplateProps } from "type";

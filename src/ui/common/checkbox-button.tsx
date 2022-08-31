@@ -1,8 +1,9 @@
 import { Checkbox, SystemProps } from "@chakra-ui/react";
 
 interface IProps extends SystemProps {
-  title?: string;
+  name?: string;
+  type?: string | number;
 }
-export function CheckboxButton({ title, ...props }: IProps) {
-  return <Checkbox {...props}>{title ? title : null}</Checkbox>;
+export function CheckboxButton({ name, type, ...props }: IProps) {
+  return <Checkbox {...props}>{name ? name : null}</Checkbox>;
 }

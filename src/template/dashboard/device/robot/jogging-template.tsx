@@ -1,21 +1,21 @@
-import { GridItem, VStack } from "@chakra-ui/react";
-import { GridLayout } from "components";
-import { useContext } from "react";
 import { AppContext } from "store";
-import { IJoggingProps } from "type";
+import { useContext } from "react";
+import { IRobotJogging } from "template";
+import { GridItem, VStack } from "@chakra-ui/react";
 import { JoggingButton } from "ui";
 import {
   AxisController,
   ButtonController,
   StepJogging,
   XYZController,
-} from ".";
+  GridLayout,
+} from "components";
 
-export function JoggingWorkingArea() {
+export function JoggingTemplate() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  const { xyz, step, axis }: IJoggingProps = {
+  const { xyz, step, axis }: IRobotJogging = {
     xyz: [
       { value: 30, name: "X" },
       { value: 30, name: "Y" },

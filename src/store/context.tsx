@@ -6,7 +6,14 @@ const initialState: InitialStateType = {
   dashboard: {
     plugin: {
       screen: null,
-      objectDetecting: { screen: 1, viewer: { configuration: 1, tool: null } },
+      objectDetecting: {
+        screen: 1,
+        viewer: {
+          configuration: 1,
+          tool: null,
+          crop: { crop: null, isApplyCrop: false },
+        },
+      },
     },
     device: { screen: null, robot: { screen: 1 } },
     type: "full-screen",

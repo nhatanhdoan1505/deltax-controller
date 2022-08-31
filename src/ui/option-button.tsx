@@ -2,28 +2,20 @@ import { HStack } from "@chakra-ui/react";
 import { AppContext, DashboardEvent } from "store";
 import { useContext } from "react";
 import { IScreenOption } from "type";
+import { appDispatch } from "utils";
 
 export function OptionButton({ icon, color, type, screen }: IScreenOption) {
   const { state, dispatch } = useContext(AppContext);
 
-  const onClickHandler = () => {
-    dispatch({
+  const onClickHandler = () =>
+    appDispatch({
       type: DashboardEvent.SET_SCREEN,
-      payload: {
-        plugin:
-          (type === "close" && screen === "PLUGIN") ||
-          (type === "full-screen" && screen === "DEVICE")
-            ? { ...state.dashboard.plugin, screen: null }
-            : { ...state.dashboard.plugin },
-        device:
-          (type === "close" && screen === "DEVICE") ||
-          (type === "full-screen" && screen === "PLUGIN")
-            ? { ...state.dashboard.device, screen: null }
-            : { ...state.dashboard.device },
-        type: type !== "close" ? type : "full-screen",
-      },
+      payload: { optionScreen: type },
+      metaData: screen,
+      state,
+      dispatch,
     });
-  };
+
   return (
     <HStack
       w="1.1rem"

@@ -6,9 +6,12 @@ import {
   SystemProps,
 } from "@chakra-ui/react";
 
-export function SlideInput(props: SystemProps) {
+interface IProps extends SystemProps {
+  value: number;
+}
+export function SlideInput({ value, ...props }: IProps) {
   return (
-    <Slider {...props}>
+    <Slider {...props} value={value}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

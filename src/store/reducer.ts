@@ -21,7 +21,7 @@ export const dashboardReducer = (
             ? "vertical-split"
             : payload.type,
       };
-    case DashboardEvent.SET_ROBOT_MENU:
+    case DashboardEvent.SET_DEVICE_ROBOT_MENU:
       return {
         ...state,
         device: {
@@ -32,7 +32,56 @@ export const dashboardReducer = (
           },
         },
       };
-
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_TOOL:
+      return {
+        ...state,
+        plugin: {
+          ...state.plugin,
+          objectDetecting: {
+            ...state.plugin.objectDetecting,
+            viewer: {
+              ...state.plugin.objectDetecting.viewer,
+              tool: action.payload.plugin?.objectDetecting.viewer.tool!,
+            },
+          },
+        },
+      };
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_CROP_VALUE:
+      return {
+        ...state,
+        plugin: {
+          ...state.plugin,
+          objectDetecting: {
+            ...state.plugin.objectDetecting,
+            viewer: {
+              ...state.plugin.objectDetecting.viewer,
+              crop: {
+                ...state.plugin.objectDetecting.viewer.crop,
+                crop: action.payload.plugin?.objectDetecting.viewer.crop.crop!,
+              },
+            },
+          },
+        },
+      };
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_IS_APPLY_CROP:
+      return {
+        ...state,
+        plugin: {
+          ...state.plugin,
+          objectDetecting: {
+            ...state.plugin.objectDetecting,
+            viewer: {
+              ...state.plugin.objectDetecting.viewer,
+              crop: {
+                ...state.plugin.objectDetecting.viewer.crop,
+                isApplyCrop:
+                  action.payload.plugin?.objectDetecting.viewer.crop
+                    .isApplyCrop!,
+              },
+            },
+          },
+        },
+      };
     default:
       return state;
   }

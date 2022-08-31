@@ -36,6 +36,7 @@ export function AxisSlider({ name, value, color }: IAxisSlider) {
         onMouseDown={(e) => setStartValue(e.clientX)}
         onMouseUp={() => setStartValue(null!)}
         onMouseMove={onMouseMoveHandler}
+        textAlign="center"
       />
       {!query && (
         <Button

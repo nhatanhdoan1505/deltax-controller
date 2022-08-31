@@ -1,35 +1,35 @@
 import { useContext } from "react";
 import { AppContext } from "store";
 import { FullScreen, HorizontalSplit, VerticalSplit } from ".";
-import { DeviceWorkingArea, PluginWorkingArea, Scene } from "components";
+import { Scene } from "components";
+import { DeviceTemplate, PluginTemplate } from "template";
 
 export function WorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  return !dashboard.device?.screen && !dashboard.plugin?.screen ? (
-    <Scene />
-  ) : dashboard.type === "full-screen" &&
+  return !dashboard.device?.screen && !dashboard.plugin?.screen ? // <Scene />
+  null : dashboard.type === "full-screen" &&
     dashboard.plugin?.screen &&
     !dashboard.device?.screen ? (
     <FullScreen>
-      <PluginWorkingArea />
+      <PluginTemplate />
     </FullScreen>
   ) : dashboard.type === "full-screen" &&
     dashboard.device?.screen &&
     !dashboard.plugin?.screen ? (
     <FullScreen>
-      <DeviceWorkingArea />
+      <DeviceTemplate />
     </FullScreen>
   ) : dashboard.type === "horizontal-split" ? (
     <HorizontalSplit
-      pluginScreen={<PluginWorkingArea />}
-      deviceScreen={<DeviceWorkingArea />}
+      pluginScreen={<PluginTemplate />}
+      deviceScreen={<DeviceTemplate />}
     />
   ) : dashboard.type === "vertical-split" ? (
     <VerticalSplit
-      pluginScreen={<PluginWorkingArea />}
-      deviceScreen={<DeviceWorkingArea />}
+      pluginScreen={<PluginTemplate />}
+      deviceScreen={<DeviceTemplate />}
     />
   ) : null;
 }

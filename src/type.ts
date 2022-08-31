@@ -55,8 +55,43 @@ export interface IAxisSlider {
 
 export interface IStep extends IJoggingButton {}
 
+export interface ICommonButton {
+  type: string | number;
+  name: string;
+}
 export interface IJoggingProps {
   xyz: XYZButton[];
   step: IStep[];
   axis: IAxisSlider[];
+}
+
+export interface IIoProps {
+  endEffector: IEndEffector;
+  output: IOutput;
+  input: IInput[];
+}
+
+export interface IInput {
+  name: string;
+  type: string;
+  value: string | null;
+  isCheckbox: boolean;
+}
+
+export interface IEndEffector {
+  device: ICommonButton[];
+  gripper: IGripper;
+}
+
+export interface IGripper {
+  min: number;
+  max: number;
+  value: number;
+}
+
+export interface IOutput {
+  custom: ICommonButton[];
+  digital: ICommonButton[];
+  pwm: ICommonButton[];
+  rcServo: ICommonButton[];
 }

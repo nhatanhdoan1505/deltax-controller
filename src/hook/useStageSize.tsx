@@ -43,8 +43,8 @@ export function useStageSize({
   }, [widthReal, ratio]);
 
   return {
-    widthReal,
-    heightReal,
+    widthSize: widthReal,
+    heightSize: heightReal,
     naturalWidth: _naturalWidth,
     naturalHeight: _naturalHeight,
   };

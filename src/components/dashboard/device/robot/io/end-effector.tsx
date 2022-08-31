@@ -1,20 +1,33 @@
 import { GridItem } from "@chakra-ui/react";
-import { NumberInput, SwitchButton } from "ui";
-import { BoxWithTitle, GridLayout } from "components";
+import { BoxWithTitle, GridLayout, RcServoGripper } from "components";
+import { IEndEffector } from "type";
+import { SwitchButton } from "ui";
 
-export function EndEffector() {
+export function EndEffector({ device, gripper }: IEndEffector) {
   return (
     <BoxWithTitle title="End Effector">
-      <GridLayout gridColumn={2} gridRow={1}>
+      <GridLayout gridColumn={2} gridRow={1} gap={1}>
         <GridItem>
-          <SwitchButton
-            isHorizontal={false}
-            name="Vancuum"
-            onClick={() => {}}
-          />
+          <GridLayout
+            gridColumn={2}
+            gridRow={1}
+            h="100%"
+            p={3}
+            border="1px solid #adaaaa"
+          >
+            {device.map(({ name, type }) => (
+              <GridItem key={name}>
+                <SwitchButton
+                  isHorizontal={false}
+                  name={name}
+                  onClick={() => {}}
+                />
+              </GridItem>
+            ))}
+          </GridLayout>
         </GridItem>
         <GridItem>
-          <SwitchButton isHorizontal={false} name="Laser" onClick={() => {}} />
+          <RcServoGripper {...gripper} />
         </GridItem>
       </GridLayout>
     </BoxWithTitle>

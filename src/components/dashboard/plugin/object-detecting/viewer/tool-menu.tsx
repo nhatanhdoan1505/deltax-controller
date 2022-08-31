@@ -1,24 +1,29 @@
-import { AppContext } from "store";
+import { AppContext, DashboardEvent } from "store";
 import { useContext } from "react";
 import { IMenuButton } from "type";
 import { GridLayout } from "components";
 import { MenuButton } from "ui";
+import { appDispatch } from "utils";
 
-export function ToolMenu() {
-  const { state } = useContext(AppContext);
+export function ToolMenu({ menu }: { menu: IMenuButton[] }) {
+  const { state, dispatch } = useContext(AppContext);
   const { dashboard } = state;
-  const initialValues: IMenuButton[] = [
-    { index: 1, name: "Find Chessboard", color: "green" },
-    { index: 2, name: "Warp Perspective", color: "green" },
-    { index: 3, name: "Calibrating Point Tool", color: "green" },
-    { index: 4, name: "Mapping Point Tool", color: "green" },
-  ];
+
+  const onClick = ({ index }: { index: number }) => {
+    appDispatch({
+      type: DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_TOOL,
+      payload: { tool: index },
+      state,
+      dispatch,
+    });
+  };
   return (
-    <GridLayout gridColumn={initialValues.length} gap={2}>
-      {initialValues.map((item, index) => (
+    <GridLayout gridColumn={menu.length} gap={2}>
+      {menu.map((item, index) => (
         <MenuButton
           {...item}
           key={index}
+          onClick={() => onClick({ index: index + 1 })}
           rootIndex={dashboard.plugin?.objectDetecting.viewer.tool!}
         />
       ))}

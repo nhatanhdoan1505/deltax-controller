@@ -1,7 +1,17 @@
-import { Input } from "@chakra-ui/react";
+import {
+  NumberInputField,
+  SystemProps,
+  NumberInput as Input,
+} from "@chakra-ui/react";
 import { useSlideInput } from "hook";
+import { HTMLAttributes } from "react";
 
-export function NumberInput({ value }: { value: number }) {
+interface IProps
+  extends SystemProps,
+    Omit<HTMLAttributes<HTMLInputElement>, "color"> {
+  value: number;
+}
+export function NumberInput({ value, ...props }: IProps) {
   const {
     number,
     setNumber,
@@ -10,15 +20,17 @@ export function NumberInput({ value }: { value: number }) {
     onMouseMoveHandler,
   } = useSlideInput({ value });
   return (
-    <Input
-      type="number"
-      value={number}
-      onChange={(e) => setNumber(+e.target.value)}
-      onTouchMove={onTouchMoveHandler}
-      onTouchEnd={() => setStartValue(null!)}
-      onMouseDown={(e) => setStartValue(e.clientX)}
-      onMouseUp={() => setStartValue(null!)}
-      onMouseMove={onMouseMoveHandler}
-    />
+    <Input value={number}>
+      <NumberInputField
+        {...props}
+        onChange={(e) => setNumber(+e.target.value)}
+        onTouchMove={onTouchMoveHandler}
+        onTouchEnd={() => setStartValue(null!)}
+        onMouseDown={(e) => setStartValue(e.clientX)}
+        onMouseUp={() => setStartValue(null!)}
+        onMouseMove={onMouseMoveHandler}
+        textAlign="center"
+      />
+    </Input>
   );
 }

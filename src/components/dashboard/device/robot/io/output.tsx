@@ -1,58 +1,53 @@
-import { HStack, VStack, Text } from "@chakra-ui/react";
+import { HStack, VStack, Text, Box } from "@chakra-ui/react";
 import { BoxWithTitle, ResponsiveLayout } from "components";
+import { IOutput } from "type";
 import { CheckboxButton, NumberInput, SelectButton } from "ui";
 
-export function Output() {
+export function Output({ custom, digital, pwm, rcServo }: IOutput) {
   return (
     <BoxWithTitle title="Output">
       <VStack w="100%">
         <HStack w="100%">
           <Text>Custom</Text>
           <HStack>
-            <HStack>
-              <CheckboxButton />
-              <SelectButton />
-            </HStack>
-            <HStack>
-              <CheckboxButton />
-              <SelectButton />
-            </HStack>
+            {custom.map((item) => (
+              <HStack key={item.name}>
+                <CheckboxButton />
+                <SelectButton {...item} />
+              </HStack>
+            ))}
           </HStack>
         </HStack>
         <HStack w="100%">
           <Text>Digital</Text>
-          <ResponsiveLayout>
-            <></>
+          <ResponsiveLayout w="100%" gridColumn={5}>
+            {digital.map((item) => (
+              <Box key={item.name}>
+                <CheckboxButton {...item} w="auto" />
+              </Box>
+            ))}
           </ResponsiveLayout>
         </HStack>
         <HStack w="100%">
           <Text>PWM</Text>
-          <HStack>
-            <Text>P0</Text>
-            <NumberInput value={0} />
-          </HStack>
-          <HStack>
-            <Text>P1</Text>
-            <NumberInput value={0} />
-          </HStack>
-          <HStack>
-            <Text>P2</Text>
-            <NumberInput value={0} />
+          <HStack w="100%" justifyContent="space-around">
+            {pwm.map(({ name, type }) => (
+              <HStack key={name}>
+                <Text>{name}</Text>
+                <NumberInput value={type as number} />
+              </HStack>
+            ))}
           </HStack>
         </HStack>
         <HStack w="100%">
-          <Text>Rc Servo</Text>
-          <HStack>
-            <Text>S0</Text>
-            <NumberInput value={0} />
-          </HStack>
-          <HStack>
-            <Text>S1</Text>
-            <NumberInput value={0} />
-          </HStack>
-          <HStack>
-            <Text>S2</Text>
-            <NumberInput value={0} />
+          <Text whiteSpace="nowrap">Rc Servo</Text>
+          <HStack w="100%" justifyContent="space-around">
+            {rcServo.map(({ name, type }) => (
+              <HStack key={name}>
+                <Text>{name}</Text>
+                <NumberInput value={type as number} />
+              </HStack>
+            ))}
           </HStack>
         </HStack>
       </VStack>

@@ -1,15 +1,15 @@
 import { ScreenLayout } from "components";
 import { useContext } from "react";
 import { AppContext } from "store";
-import { RobotWorkingArea } from ".";
+import { RobotTemplate } from ".";
 
-export function DeviceWorkingArea() {
+export function DeviceTemplate() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
   return dashboard.device?.screen ? (
     <ScreenLayout screen="DEVICE">
-      {dashboard.device.screen === 1 ? <RobotWorkingArea /> : null}
+      {dashboard.device.screen === 1 ? <RobotTemplate /> : null}
     </ScreenLayout>
   ) : null;
 }
