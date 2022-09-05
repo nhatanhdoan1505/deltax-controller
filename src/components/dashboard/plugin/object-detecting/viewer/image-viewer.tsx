@@ -1,8 +1,15 @@
-import { useImageCrop, useLookZoom, useScaleImage, useStageSize } from "hook";
+import {
+  useImageCrop,
+  useLookZoom,
+  useScaleImage,
+  useStageSize,
+  useTowFingersZoom,
+} from "hook";
 import Konva from "konva";
 import { useEffect, useRef, useState } from "react";
 import { Image, Layer, Stage } from "react-konva";
 import useImage from "use-image";
+import { getNumberTouches } from "utils";
 
 export function ImageViewer({
   imageUrl,
@@ -23,6 +30,7 @@ export function ImageViewer({
   const [imageRefState, setImageRefState] = useState<Konva.Image>(null!);
   const [widthImage, setWidthImage] = useState<number>(null!);
   const [heightImage, setHeightImage] = useState<number>(null!);
+  const [isDraggable, setIsDraggable] = useState<boolean>(false);
 
   const { widthSize, heightSize, naturalHeight, naturalWidth } = useStageSize({
     width,
@@ -55,6 +63,11 @@ export function ImageViewer({
     currentStage: { width: widthImage, height: heightImage },
   });
 
+  const { zoomTwoFingers, setLastCenter, setLastDist } = useTowFingersZoom({
+    imageRef,
+    stageRef,
+  });
+
   useEffect(() => {
     widthSize && setWidthImage(widthSize);
     heightSize && setHeightImage(heightSize);
@@ -85,12 +98,25 @@ export function ImageViewer({
       onMouseDown={zoomStart}
       onMouseMove={zoomTouch}
       onMouseUp={outZoomTouch}
-      onTouchStart={zoomStart}
-      onTouchMove={zoomTouch}
-      onTouchEnd={outZoomTouch}
+      onTouchStart={(evt) => {
+        const touches = getNumberTouches(evt);
+        if (touches === 1) zoomStart();
+      }}
+      onTouchMove={(evt) => {
+        const touches = getNumberTouches(evt);
+        if (touches === 1) zoomTouch();
+        else if (touches === 2) zoomTwoFingers({ evt });
+        // else if (touches === 3) setIsDraggable(true);
+      }}
+      onTouchEnd={() => {
+        setLastDist(0);
+        setLastCenter(null!);
+        setIsDraggable(false);
+        outZoomTouch();
+      }}
     >
       <Layer x={0} y={0}>
-        <Image image={image} ref={imageRef} />
+        <Image image={image} ref={imageRef} draggable={isDraggable} />
         <Image image={undefined} x={0} y={0} ref={zoomRef} />
       </Layer>
     </Stage>

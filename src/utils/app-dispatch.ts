@@ -12,6 +12,7 @@ interface IPayload {
     | "full-screen"
     | "horizontal-split"
     | "vertical-split";
+  step?: string;
 }
 
 export function appDispatch({
@@ -78,7 +79,7 @@ export function appDispatch({
         payload: {
           device: {
             ...dashboard.device,
-            robot: { screen: payload.screen! },
+            robot: { ...dashboard.device.robot, screen: payload.screen! },
           },
         },
       });
@@ -134,6 +135,23 @@ export function appDispatch({
                   ...dashboard.plugin.objectDetecting.viewer.crop,
                   isApplyCrop: payload.isApplyCrop!,
                 },
+              },
+            },
+          },
+        },
+      });
+      break;
+    case DashboardEvent.SET_DEVICE_ROBOT_JOGGING_STEP:
+      dispatch({
+        type: DashboardEvent.SET_DEVICE_ROBOT_JOGGING_STEP,
+        payload: {
+          device: {
+            ...dashboard.device,
+            robot: {
+              ...dashboard.device.robot,
+              jogging: {
+                ...dashboard.device.robot.jogging,
+                step: +payload.step!,
               },
             },
           },

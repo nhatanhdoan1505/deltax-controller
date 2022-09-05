@@ -1,4 +1,5 @@
 import { centerCrop, makeAspectCrop } from "react-image-crop";
+import Konva from "konva"
 
 export function centerAspectCrop(
   mediaWidth: number,
@@ -134,4 +135,27 @@ export const detectRealPosition = ({
   scaleY: number;
 }) => {
   return { x: (x - xStage) / scaleX, y: (y - yStage) / scaleY };
+};
+
+export const getCenter = (
+  p1: { x: number; y: number },
+  p2: { x: number; y: number }
+) => {
+  return {
+    x: (p1.x + p2.x) / 2,
+    y: (p1.y + p2.y) / 2,
+  };
+};
+
+export const getDistance = (
+  p1: { x: number; y: number },
+  p2: { x: number; y: number }
+) => {
+  return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+};
+
+export const getNumberTouches = (
+  evt: Konva.KonvaEventObject<TouchEvent>
+): number => {
+  return evt.evt.touches.length
 };

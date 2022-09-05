@@ -30,7 +30,19 @@ export interface IScreenOption {
 
 export interface IJoggingButton {
   name: string | JSX.Element;
-  type: string;
+  type:
+    | "LEFT"
+    | "RIGHT"
+    | "FORWARD"
+    | "BACKWARD"
+    | "UP"
+    | "DOWN"
+    | "HOME"
+    | "0.5"
+    | "1"
+    | "10"
+    | "50"
+    | "100";
   color: ThemeTypings["colorSchemes"];
 }
 

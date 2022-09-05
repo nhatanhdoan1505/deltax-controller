@@ -9,13 +9,14 @@ import {
   StepJogging,
   XYZController,
   GridLayout,
+  SpeedController,
 } from "components";
 
 export function JoggingTemplate() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  const { xyz, step, axis }: IRobotJogging = {
+  const { xyz, step, axis, speed }: IRobotJogging = {
     xyz: [
       { value: 30, name: "X" },
       { value: 30, name: "Y" },
@@ -33,6 +34,7 @@ export function JoggingTemplate() {
       { name: "5-Axis", value: 30, color: "green" },
       { name: "6-Axis", value: 30, color: "green" },
     ],
+    speed: dashboard.device.robot.jogging.speed,
   };
   return dashboard.type === "full-screen" ? (
     <VStack w="100%" h="100%" justifyContent="space-around">
@@ -44,6 +46,7 @@ export function JoggingTemplate() {
           <StepJogging step={step} />
         </GridItem>
       </GridLayout>
+      <SpeedController value={speed} />
       <XYZController xyz={xyz} />
       <ButtonController />
       <AxisController axis={axis} />

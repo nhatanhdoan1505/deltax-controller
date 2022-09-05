@@ -1,5 +1,13 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
-import { Action, InitialStateType, dashboardReducer } from ".";
+import {
+  Action,
+  InitialStateType,
+  dashboardReducer,
+  ReducerAction,
+  DashboardPayload,
+  DashboardEvent,
+} from ".";
+import { io } from "socket.io-client";
 
 const initialState: InitialStateType = {
   module: 4,
@@ -15,9 +23,15 @@ const initialState: InitialStateType = {
         },
       },
     },
-    device: { screen: null, robot: { screen: 1 } },
+    device: {
+      screen: null,
+      robot: { screen: 1, jogging: { speed: 70, step: 0.5 } },
+    },
     type: "full-screen",
   },
+  socket: io(
+    `http://${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}`
+  ),
 };
 
 const AppContext = createContext<{
@@ -28,8 +42,15 @@ const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const mainReducer = ({ dashboard }: InitialStateType, action: Action) => ({
-  dashboard: dashboardReducer(dashboard, action),
+const mainReducer = (
+  { dashboard, socket }: InitialStateType,
+  action: Action
+) => ({
+  dashboard: dashboardReducer(
+    dashboard,
+    action as unknown as ReducerAction<DashboardEvent, DashboardPayload>
+  ),
+  socket: socket,
   module: 4,
 });
 

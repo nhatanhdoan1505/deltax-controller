@@ -3,7 +3,7 @@ import {
   DashboardPayload,
   ReducerAction,
   DashboardEvent,
-} from ".";
+} from "store";
 
 export const dashboardReducer = (
   state: DashboardType,
@@ -78,6 +78,20 @@ export const dashboardReducer = (
                   action.payload.plugin?.objectDetecting.viewer.crop
                     .isApplyCrop!,
               },
+            },
+          },
+        },
+      };
+    case DashboardEvent.SET_DEVICE_ROBOT_JOGGING_STEP:
+      return {
+        ...state,
+        device: {
+          ...state.device,
+          robot: {
+            ...state.device.robot,
+            jogging: {
+              ...state.device.robot.jogging,
+              step: action.payload.device?.robot.jogging.step!,
             },
           },
         },
