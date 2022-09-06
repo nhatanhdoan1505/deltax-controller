@@ -6,7 +6,7 @@ import { IDevice, IPlugin } from "type";
 
 interface IProps extends Omit<IPlugin, "type">, Omit<IDevice, "type"> {
   type: "DEVICE" | "PLUGIN";
-  refs?: any;
+  refs: any;
 }
 
 export function SidebarButton({
@@ -29,7 +29,6 @@ export function SidebarButton({
       metaData: type,
     });
 
-
   return (
     <VStack
       border="1px solid white"
@@ -37,7 +36,7 @@ export function SidebarButton({
       borderRadius="base"
       _hover={{ cursor: "pointer" }}
       onClick={onClickHandler}
-      ref={refs ? refs : null}
+      ref={refs}
     >
       {(type === "PLUGIN" && dashboard.plugin.screen === index) ||
       (type === "DEVICE" && dashboard.device.screen === index)
@@ -53,6 +52,7 @@ export function SidebarButton({
         }
         textAlign="center"
         fontSize="sm"
+        whiteSpace="pre-wrap"
       >
         {name}
       </Text>

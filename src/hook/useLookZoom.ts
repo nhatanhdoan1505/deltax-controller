@@ -41,7 +41,6 @@ export function useLookZoom({
     sideOfSquare = sideOfSquare < 100 ? 100 : sideOfSquare;
 
     let { x, y } = stageRef.current.getPointerPosition() as Vector2d;
-    console.log({ x, y });
 
     const zoomPosition = getPositionZoom({
       x,
@@ -62,16 +61,6 @@ export function useLookZoom({
       (y - stageRef.current.y()) / stageRef.current.scaleY() -
       imageRef.current.y();
 
-    console.log({
-      scale: imageRef.current.scaleX(),
-      width: stageRef.current.width(),
-      naturalWidth: imageRef.current.attrs.image.naturalWidth,
-    });
-
-    console.log({ x, y });
-
-    console.log({ crop: imageRef.current.crop() });
-
     const xImage =
       x / zoomRef.current.scaleX() +
       imageRef.current.crop().x * imageRef.current.scaleX();
@@ -79,7 +68,6 @@ export function useLookZoom({
       y / zoomRef.current.scaleY() +
       imageRef.current.crop().y * imageRef.current.scaleY();
 
-    console.log({ xImage, yImage });
     zoomRef.current.crop({
       x: xImage - zoomScope / 2,
       y: yImage - zoomScope / 2,

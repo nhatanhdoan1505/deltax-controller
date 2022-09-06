@@ -1,9 +1,9 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { SideBar } from "components";
+import { useState } from "react";
+import { Draggable, DropResult } from "react-beautiful-dnd";
 import { IDevice } from "type";
 import { SidebarButton } from "ui";
-import { Draggable, DropResult } from "react-beautiful-dnd";
-import { useState } from "react";
 import { reorder } from "utils";
 
 export function DeviceSidebar({ devices }: { devices: IDevice[] }) {
@@ -27,22 +27,24 @@ export function DeviceSidebar({ devices }: { devices: IDevice[] }) {
   };
   return (
     <SideBar onDragEnd={onDragEnd} id="">
-      {devicesState.map((item, index) => (
-        <Draggable draggableId={index.toString()} index={index} key={index}>
-          {(provided) => (
-            <SidebarButton
-              {...item}
-              key={item.name}
-              refs={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            />
-          )}
-        </Draggable>
-      ))}
-      <Text fontWeight="semibold" textAlign="center" mt="auto" fontSize="sm">
-        Add Device +
-      </Text>
+      <>
+        {devicesState.map((item, index) => (
+          <Draggable draggableId={index.toString()} index={index} key={index}>
+            {(provided) => (
+              <SidebarButton
+                {...item}
+                key={item.name}
+                refs={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+              />
+            )}
+          </Draggable>
+        ))}
+        <Text fontWeight="semibold" textAlign="center" mt="auto" fontSize="sm">
+          Add Device +
+        </Text>
+      </>
     </SideBar>
   );
 }
