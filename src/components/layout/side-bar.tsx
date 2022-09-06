@@ -1,7 +1,16 @@
 import { VStack } from "@chakra-ui/react";
 import { ReactNode } from "react";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
-export function SideBar({ children }: { children: ReactNode }) {
+export function SideBar({
+  children,
+  onDragEnd,
+  id,
+}: {
+  children: ReactNode;
+  onDragEnd: (result: DropResult) => void;
+  id: string;
+}) {
   return (
     <VStack
       backgroundColor="whiteAlpha.500"
@@ -11,7 +20,16 @@ export function SideBar({ children }: { children: ReactNode }) {
       borderRadius="base"
       p={2}
     >
-      {children}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId={id}>
+          {(provided) => (
+            <VStack ref={provided.innerRef} {...provided.droppableProps}>
+              {children}
+              {provided.placeholder}
+            </VStack>
+          )}
+        </Droppable>
+      </DragDropContext>
     </VStack>
   );
 }
