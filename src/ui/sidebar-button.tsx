@@ -6,7 +6,7 @@ import { IDevice, IPlugin } from "type";
 
 interface IProps extends Omit<IPlugin, "type">, Omit<IDevice, "type"> {
   type: "DEVICE" | "PLUGIN";
-  refs: any;
+  refs?: any;
 }
 
 export function SidebarButton({

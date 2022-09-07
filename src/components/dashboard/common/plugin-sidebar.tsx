@@ -1,9 +1,9 @@
-import { reorder } from "utils";
 import { SideBar } from "components";
 import { useState } from "react";
-import { Draggable, DropResult } from "react-beautiful-dnd";
+import { DropResult } from "react-beautiful-dnd";
 import { IPlugin } from "type";
 import { SidebarButton } from "ui";
+import { reorder } from "utils";
 
 export function PluginSidebar({ plugins }: { plugins: IPlugin[] }) {
   const [pluginsState, setPluginsState] = useState<IPlugin[]>(plugins);
@@ -28,17 +28,24 @@ export function PluginSidebar({ plugins }: { plugins: IPlugin[] }) {
   return (
     <SideBar onDragEnd={onDragEnd} id="plugin">
       {pluginsState.map((item, index) => (
-        <Draggable draggableId={index.toString()} index={index} key={index}>
-          {(provided) => (
-            <SidebarButton
-              {...item}
-              key={item.name}
-              refs={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            />
-          )}
-        </Draggable>
+        // <Draggable draggableId={index.toString()} index={index} key={index}>
+        //   {(provided) => (
+        //     <SidebarButton
+        //       {...item}
+        //       key={item.name}
+        //       refs={provided.innerRef}
+        //       {...provided.draggableProps}
+        //       {...provided.dragHandleProps}
+        //     />
+        //   )}
+        // </Draggable>
+        <SidebarButton
+          {...item}
+          key={item.name}
+          // refs={provided.innerRef}
+          // {...provided.draggableProps}
+          // {...provided.dragHandleProps}
+        />
       ))}
     </SideBar>
   );

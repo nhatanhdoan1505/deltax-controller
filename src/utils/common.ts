@@ -1,3 +1,5 @@
+import { InitialStateType } from "store";
+
 export const reorder = ({
   list,
   startIndex,
@@ -12,4 +14,10 @@ export const reorder = ({
   result.splice(endIndex, 0, removed);
 
   return result;
+};
+
+export const findDeviceComponent = ({ state }: { state: InitialStateType }) => {
+  return state.dashboard.device.component.find(
+    (_item, index) => index + 1 === state.dashboard.device.screen
+  );
 };

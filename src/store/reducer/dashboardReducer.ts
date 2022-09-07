@@ -3,12 +3,14 @@ import {
   DashboardPayload,
   ReducerAction,
   DashboardEvent,
+  DeviceComponentType,
 } from "store";
 
 export const dashboardReducer = (
   state: DashboardType,
   action: ReducerAction<DashboardEvent, DashboardPayload>
 ): DashboardType => {
+  let component: DeviceComponentType[];
   switch (action?.type) {
     case DashboardEvent.SET_SCREEN:
       let payload = { ...state, ...action.payload };
@@ -26,10 +28,7 @@ export const dashboardReducer = (
         ...state,
         device: {
           ...state.device,
-          robot: {
-            ...state.device?.robot,
-            screen: action.payload.device?.robot?.screen!,
-          },
+          component: action.payload.device?.component!,
         },
       };
     case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_TOOL:
@@ -87,13 +86,23 @@ export const dashboardReducer = (
         ...state,
         device: {
           ...state.device,
-          robot: {
-            ...state.device.robot,
-            jogging: {
-              ...state.device.robot.jogging,
-              step: action.payload.device?.robot.jogging.step!,
-            },
-          },
+          component: action.payload.device?.component!,
+        },
+      };
+    case DashboardEvent.SET_DEVICE_ROBOT_JOGGING_SPEED:
+      return {
+        ...state,
+        device: {
+          ...state.device,
+          component: action.payload.device?.component!,
+        },
+      };
+    case DashboardEvent.ADD_MORE_DEVICE:
+      return {
+        ...state,
+        device: {
+          ...state.device,
+          component: action.payload.device?.component!,
         },
       };
     default:

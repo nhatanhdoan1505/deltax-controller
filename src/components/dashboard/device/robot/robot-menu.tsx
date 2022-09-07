@@ -1,13 +1,12 @@
-import { AppContext, DashboardEvent } from "store";
 import { GridLayout } from "components";
 import { useContext } from "react";
+import { AppContext, DashboardEvent } from "store";
 import { IMenuButton } from "type";
 import { MenuButton } from "ui";
-import { appDispatch } from "utils";
+import { appDispatch, findDeviceComponent } from "utils";
 
 export function RobotMenu({ menu }: { menu: IMenuButton[] }) {
   const { state, dispatch } = useContext(AppContext);
-  const { dashboard } = state;
 
   return (
     <GridLayout gridColumn={menu.length} w="100%" h="auto" gap={2}>
@@ -15,7 +14,7 @@ export function RobotMenu({ menu }: { menu: IMenuButton[] }) {
         <MenuButton
           {...item}
           key={index}
-          rootIndex={dashboard.device?.robot?.screen!}
+          rootIndex={findDeviceComponent({ state })?.screen!}
           onClick={() => {
             appDispatch({
               type: DashboardEvent.SET_DEVICE_ROBOT_MENU,

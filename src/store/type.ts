@@ -22,6 +22,8 @@ export enum DashboardEvent {
   SET_SCREEN = "SET_SCREEN",
   SET_DEVICE_ROBOT_MENU = "SET_DEVICE_ROBOT_MENU",
   SET_DEVICE_ROBOT_JOGGING_STEP = "SET_DEVICE_ROBOT_JOGGING_STEP",
+  SET_DEVICE_ROBOT_JOGGING_SPEED = "SET_DEVICE_ROBOT_JOGGING_SPEED",
+  ADD_MORE_DEVICE = "ADD_MORE_DEVICE",
   SET_PLUGIN_OBJECT_DETECTING_VIEWER_TOOL = "SET_PLUGIN_OBJECT_DETECTING_VIEWER_TOOL",
   SET_PLUGIN_OBJECT_DETECTING_VIEWER_CROP_VALUE = "SET_PLUGIN_OBJECT_DETECTING_VIEWER_CROP_VALUE",
   SET_PLUGIN_OBJECT_DETECTING_VIEWER_IS_APPLY_CROP = "SET_PLUGIN_OBJECT_DETECTING_VIEWER_IS_APPLY_CROP",
@@ -58,18 +60,32 @@ export interface PluginType {
   };
 }
 
-export interface DevicePlugin {
+export interface RobotType {
   screen: number | null;
-  robot: { screen: number | null; jogging: { speed: number; step: number } };
+  jogging: {
+    speed: number;
+    step: number;
+    axis: { name: string; value: number }[];
+    xyz: { name: string; value: number }[];
+  };
+  name: string;
+}
+export interface DeviceComponentType extends RobotType {
+  type: "ROBOT" | "CONVEYOR" | "ENCODER";
+}
+
+export interface DeviceType {
+  screen: number | null;
+  component: DeviceComponentType[];
 }
 export interface DashboardType {
   plugin: PluginType;
-  device: DevicePlugin;
+  device: DeviceType;
   type: "full-screen" | "horizontal-split" | "vertical-split";
 }
 
 export interface DashboardPayload {
   plugin?: PluginType;
-  device?: DevicePlugin;
+  device?: DeviceType;
   type?: "full-screen" | "horizontal-split" | "vertical-split";
 }

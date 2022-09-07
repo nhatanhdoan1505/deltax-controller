@@ -19,6 +19,7 @@ export interface IDevice {
   iconActive: JSX.Element;
   index: number;
   type: "DEVICE";
+  device?: "ROBOT";
 }
 
 export interface IScreenOption {
@@ -43,7 +44,7 @@ export interface IJoggingButton {
     | "10"
     | "50"
     | "100";
-  color: ThemeTypings["colorSchemes"];
+  color?: ThemeTypings["colorSchemes"];
 }
 
 export interface IMenuButton {
@@ -62,7 +63,7 @@ export interface XYZButton {
 export interface IAxisSlider {
   name: string;
   value: number;
-  color: ThemeTypings["colorSchemes"];
+  color?: ThemeTypings["colorSchemes"];
 }
 
 export interface IStep extends IJoggingButton {}

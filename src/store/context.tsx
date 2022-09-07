@@ -25,7 +25,27 @@ const initialState: InitialStateType = {
     },
     device: {
       screen: null,
-      robot: { screen: 1, jogging: { speed: 70, step: 0.5 } },
+      component: [
+        {
+          screen: 1,
+          jogging: {
+            speed: 70,
+            step: 0.5,
+            axis: [
+              { name: "4-Axis", value: 30 },
+              { name: "5-Axis", value: 30 },
+              { name: "6-Axis", value: 30 },
+            ],
+            xyz: [
+              { value: 30, name: "X" },
+              { value: 30, name: "Y" },
+              { value: 30, name: "Z" },
+            ],
+          },
+          name: "Robot1",
+          type: "ROBOT",
+        },
+      ],
     },
     type: "full-screen",
   },

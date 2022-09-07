@@ -1,6 +1,12 @@
 import { Dispatch } from "react";
 import { Crop } from "react-image-crop";
-import { Action, DashboardEvent, InitialStateType } from "store";
+import {
+  Action,
+  DashboardEvent,
+  DeviceComponentType,
+  InitialStateType,
+} from "store";
+import * as _ from "lodash";
 
 interface IPayload {
   screen?: number;
@@ -13,6 +19,9 @@ interface IPayload {
     | "horizontal-split"
     | "vertical-split";
   step?: string;
+  speed?: number;
+  addDevice?: "ROBOT" | "CONVEYOR" | "ENCODER";
+  name?: string;
 }
 
 export function appDispatch({
@@ -29,6 +38,7 @@ export function appDispatch({
   metaData?: "PLUGIN" | "DEVICE";
 }) {
   const { dashboard } = state;
+  let component: DeviceComponentType[];
   switch (type) {
     case DashboardEvent.SET_SCREEN:
       if (["PLUGIN", "DEVICE"].includes(metaData!) && !payload.optionScreen) {
@@ -74,12 +84,17 @@ export function appDispatch({
         });
       break;
     case DashboardEvent.SET_DEVICE_ROBOT_MENU:
+      component = dashboard.device.component.map((item, index) => ({
+        ...item,
+        screen:
+          index + 1 === dashboard.device.screen ? payload.screen! : item.screen,
+      }));
       dispatch({
         type: DashboardEvent.SET_DEVICE_ROBOT_MENU,
         payload: {
           device: {
             ...dashboard.device,
-            robot: { ...dashboard.device.robot, screen: payload.screen! },
+            component,
           },
         },
       });
@@ -142,23 +157,79 @@ export function appDispatch({
       });
       break;
     case DashboardEvent.SET_DEVICE_ROBOT_JOGGING_STEP:
+      component = dashboard.device.component.map((item, index) => {
+        return item.type === "ROBOT"
+          ? {
+              ...item,
+              jogging: {
+                ...item.jogging,
+                step:
+                  index + 1 === dashboard.device.screen
+                    ? +payload.step!
+                    : item.jogging.step,
+              },
+            }
+          : item;
+      });
       dispatch({
         type: DashboardEvent.SET_DEVICE_ROBOT_JOGGING_STEP,
         payload: {
           device: {
             ...dashboard.device,
-            robot: {
-              ...dashboard.device.robot,
-              jogging: {
-                ...dashboard.device.robot.jogging,
-                step: +payload.step!,
-              },
-            },
+            component,
           },
         },
       });
       break;
+    case DashboardEvent.SET_DEVICE_ROBOT_JOGGING_SPEED:
+      component = dashboard.device.component.map((item, index) => ({
+        ...item,
+        jogging: {
+          ...item.jogging,
+          speed:
+            index + 1 === dashboard.device.screen
+              ? +payload.speed!
+              : item.jogging.speed,
+        },
+      }));
+      dispatch({
+        type: DashboardEvent.SET_DEVICE_ROBOT_JOGGING_SPEED,
+        payload: {
+          device: {
+            ...dashboard.device,
+            component,
+          },
+        },
+      });
+      break;
+    case DashboardEvent.ADD_MORE_DEVICE:
+      const existComponent = state.dashboard.device.component.find(
+        (item) => item.type === payload.addDevice!
+      );
+      const index = _.findLastIndex(
+        state.dashboard.device.component,
+        (item) => item.type === payload.addDevice!
+      );
+      existComponent
+        ? state.dashboard.device.component.splice(index + 1, 0, {
+            ...existComponent,
+            name: `${payload.name}${index + 2}`,
+          })
+        : state.dashboard.device.component.push({
+            type: payload.addDevice!,
+            name: payload.name,
+          } as DeviceComponentType);
 
+      dispatch({
+        type: DashboardEvent.ADD_MORE_DEVICE,
+        payload: {
+          device: {
+            ...dashboard.device,
+            component: state.dashboard.device.component,
+          },
+        },
+      });
+      break;
     default:
       break;
   }

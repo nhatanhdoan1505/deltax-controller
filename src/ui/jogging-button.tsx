@@ -7,7 +7,9 @@ import { appDispatch } from "utils";
 
 export function JoggingButton({ type, name, color }: IJoggingButton) {
   const { state, dispatch } = useContext(AppContext);
-  const { step, speed } = state.dashboard.device.robot.jogging;
+  const { step, speed } = state.dashboard.device.component.find(
+    (item, index) => index + 1 === state.dashboard.device.screen
+  )?.jogging as { step: number; speed: number };
 
   const [isController, _setIsController] = useState<boolean>(
     ["LEFT", "RIGHT", "FORWARD", "BACKWARD", "UP", "DOWN", "HOME"].includes(
