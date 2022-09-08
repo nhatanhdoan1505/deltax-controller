@@ -22,6 +22,7 @@ interface IPayload {
   speed?: number;
   addDevice?: "ROBOT" | "CONVEYOR" | "ENCODER";
   name?: string;
+  configuration?: number;
 }
 
 export function appDispatch({
@@ -226,6 +227,37 @@ export function appDispatch({
           device: {
             ...dashboard.device,
             component: state.dashboard.device.component,
+          },
+        },
+      });
+      break;
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_CONFIGURATION:
+      dispatch({
+        type: DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_CONFIGURATION,
+        payload: {
+          plugin: {
+            ...dashboard.plugin,
+            objectDetecting: {
+              ...dashboard.plugin.objectDetecting,
+              viewer: {
+                ...dashboard.plugin.objectDetecting.viewer,
+                configuration: payload.configuration!,
+              },
+            },
+          },
+        },
+      });
+      break;
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_MENU:
+      dispatch({
+        type: DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_MENU,
+        payload: {
+          plugin: {
+            ...dashboard.plugin,
+            objectDetecting: {
+              ...dashboard.plugin.objectDetecting,
+              screen: payload.screen!,
+            },
           },
         },
       });

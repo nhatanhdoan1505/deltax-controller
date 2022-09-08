@@ -4,6 +4,7 @@ import {
   useScaleImage,
   useStageSize,
   useTowFingersZoom,
+  useWheelZoom,
 } from "hook";
 import Konva from "konva";
 import { useEffect, useRef, useState } from "react";
@@ -68,6 +69,8 @@ export function ImageViewer({
     stageRef,
   });
 
+  const { onWheel } = useWheelZoom({ stageRef });
+
   useEffect(() => {
     widthSize && setWidthImage(widthSize);
     heightSize && setHeightImage(heightSize);
@@ -106,7 +109,6 @@ export function ImageViewer({
         const touches = getNumberTouches(evt);
         if (touches === 1) zoomTouch();
         else if (touches === 2) zoomTwoFingers({ evt });
-        // else if (touches === 3) setIsDraggable(true);
       }}
       onTouchEnd={() => {
         setLastDist(0);
@@ -114,6 +116,7 @@ export function ImageViewer({
         setIsDraggable(false);
         outZoomTouch();
       }}
+      onWheel={onWheel}
     >
       <Layer x={0} y={0}>
         <Image image={image} ref={imageRef} draggable={isDraggable} />

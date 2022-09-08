@@ -105,6 +105,32 @@ export const dashboardReducer = (
           component: action.payload.device?.component!,
         },
       };
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_VIEWER_CONFIGURATION:
+      return {
+        ...state,
+        plugin: {
+          ...state.plugin,
+          objectDetecting: {
+            ...state.plugin.objectDetecting,
+            viewer: {
+              ...state.plugin.objectDetecting.viewer,
+              configuration:
+                action.payload.plugin?.objectDetecting.viewer.configuration!,
+            },
+          },
+        },
+      };
+    case DashboardEvent.SET_PLUGIN_OBJECT_DETECTING_MENU:
+      return {
+        ...state,
+        plugin: {
+          ...state.plugin,
+          objectDetecting: {
+            ...state.plugin.objectDetecting,
+            screen: action.payload.plugin?.objectDetecting.screen!,
+          },
+        },
+      };
     default:
       return state;
   }

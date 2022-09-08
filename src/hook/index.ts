@@ -5,4 +5,5 @@ export * from "./useScaleImage";
 export * from "./useImageCrop";
 export * from "./useLookZoom";
 export * from "./useClickController";
-export * from "./ useTwoFingersZoom"
+export * from "./ useTwoFingersZoom";
+export * from "./useWheelZoom";

@@ -8,11 +8,13 @@ import { ObjectDetectingMenuTemplate, ViewerTemplate } from ".";
 export function ObjectDetectingTemplate() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
-  
-  return dashboard.plugin?.objectDetecting.screen === 1 ? (
+
+  return (
     <VStack w="100%" h="100%">
       <ObjectDetectingMenuTemplate />
-      <ViewerTemplate />
+      {dashboard.plugin?.objectDetecting.screen === 1 ? (
+        <ViewerTemplate />
+      ) : null}
     </VStack>
-  ) : null;
+  );
 }

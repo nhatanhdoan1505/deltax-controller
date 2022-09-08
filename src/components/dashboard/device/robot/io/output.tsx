@@ -1,14 +1,16 @@
-import { HStack, VStack, Text, Box } from "@chakra-ui/react";
-import { BoxWithTitle, ResponsiveLayout } from "components";
+import { HStack, VStack, Text, Box, GridItem } from "@chakra-ui/react";
+import { BoxWithTitle, GridLayout, ResponsiveLayout } from "components";
 import { IOutput } from "type";
 import { CheckboxButton, NumberInput, SelectButton } from "ui";
 
 export function Output({ custom, digital, pwm, rcServo }: IOutput) {
   return (
     <BoxWithTitle title="Output">
-      <VStack w="100%">
-        <HStack w="100%">
+      <GridLayout w="100%" gridRow={5} gridColumn={8} gap={1}>
+        <GridItem colSpan={1}>
           <Text>Custom</Text>
+        </GridItem>
+        <GridItem colSpan={7}>
           <HStack>
             {custom.map((item) => (
               <HStack key={item.name}>
@@ -17,20 +19,26 @@ export function Output({ custom, digital, pwm, rcServo }: IOutput) {
               </HStack>
             ))}
           </HStack>
-        </HStack>
-        <HStack w="100%">
+        </GridItem>
+
+        <GridItem colSpan={1}>
           <Text>Digital</Text>
-          <ResponsiveLayout w="100%" gridColumn={5}>
+        </GridItem>
+        <GridItem colSpan={7}>
+          <ResponsiveLayout w="100%" gridColumn={4}>
             {digital.map((item) => (
               <Box key={item.name}>
                 <CheckboxButton {...item} w="auto" />
               </Box>
             ))}
           </ResponsiveLayout>
-        </HStack>
-        <HStack w="100%">
+        </GridItem>
+
+        <GridItem colSpan={1}>
           <Text>PWM</Text>
-          <HStack w="100%" justifyContent="space-around">
+        </GridItem>
+        <GridItem colSpan={7}>
+          <HStack w="100%">
             {pwm.map(({ name, type }) => (
               <HStack key={name}>
                 <Text>{name}</Text>
@@ -38,10 +46,13 @@ export function Output({ custom, digital, pwm, rcServo }: IOutput) {
               </HStack>
             ))}
           </HStack>
-        </HStack>
-        <HStack w="100%">
+        </GridItem>
+
+        <GridItem colSpan={1}>
           <Text whiteSpace="nowrap">Rc Servo</Text>
-          <HStack w="100%" justifyContent="space-around">
+        </GridItem>
+        <GridItem colSpan={7}>
+          <HStack w="100%">
             {rcServo.map(({ name, type }) => (
               <HStack key={name}>
                 <Text>{name}</Text>
@@ -49,8 +60,8 @@ export function Output({ custom, digital, pwm, rcServo }: IOutput) {
               </HStack>
             ))}
           </HStack>
-        </HStack>
-      </VStack>
+        </GridItem>
+      </GridLayout>
     </BoxWithTitle>
   );
 }

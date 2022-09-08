@@ -3,10 +3,12 @@ import { AppContext } from "store";
 import { EndEffector, Input, Output } from "components";
 import { IIo } from "template";
 import { useContext } from "react";
+import { useWidthQuery } from "hook";
 
 export function IoTemplate() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
+  const query = useWidthQuery({ value: 700 });
 
   const { endEffector, output, input }: IIo = {
     endEffector: {
@@ -67,15 +69,19 @@ export function IoTemplate() {
       { name: "A2", value: null, isCheckbox: false, type: "A2" },
     ],
   };
+
   return (
     <VStack w="100%" h="100%">
       <EndEffector {...endEffector} />
       <Output {...output} />
-      {dashboard.type === "full-screen" ||
-      dashboard.type === "horizontal-split" ? (
-        <Input input={input} gridColumn={2} />
+
+      {!query ? (
+        <Input input={input} gap={1} />
+      ) : dashboard.type === "full-screen" ||
+        dashboard.type === "horizontal-split" ? (
+        <Input input={input} gridColumn={2} gap={1} />
       ) : (
-        <Input input={input} />
+        <Input input={input} gap={1} />
       )}
     </VStack>
   );
