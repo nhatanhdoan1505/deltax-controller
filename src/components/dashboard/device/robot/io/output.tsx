@@ -15,7 +15,7 @@ export function Output({ custom, digital, pwm, rcServo }: IOutput) {
             {custom.map((item) => (
               <HStack key={item.name}>
                 <CheckboxButton />
-                <SelectButton {...item} />
+                <SelectButton options={[item]} />
               </HStack>
             ))}
           </HStack>

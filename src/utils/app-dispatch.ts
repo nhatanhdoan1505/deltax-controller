@@ -211,14 +211,18 @@ export function appDispatch({
         state.dashboard.device.component,
         (item) => item.type === payload.addDevice!
       );
+      const length = state.dashboard.device.component.filter(
+        (item) => item.type === payload.addDevice!
+      ).length;
+
       existComponent
         ? state.dashboard.device.component.splice(index + 1, 0, {
             ...existComponent,
-            name: `${payload.name}${index + 2}`,
+            name: `${payload.name}${length + 1}`,
           })
         : state.dashboard.device.component.push({
             type: payload.addDevice!,
-            name: payload.name,
+            name: `${payload.name}1`,
           } as DeviceComponentType);
 
       dispatch({
