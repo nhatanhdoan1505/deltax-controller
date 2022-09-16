@@ -33,6 +33,7 @@ export enum DashboardEvent {
 
 export enum SocketEvent {
   MOVE = "MOVE",
+  LIVE_CAMERA = "LIVE_CAMERA",
 }
 
 export enum Direction {

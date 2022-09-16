@@ -2,6 +2,7 @@ import { AppContext } from "store";
 import { useContext } from "react";
 import { ScreenLayout } from "components";
 import { ObjectDetectingTemplate } from ".";
+import { ScriptTemplate } from ".";
 
 export function PluginTemplate() {
   const { state } = useContext(AppContext);
@@ -9,7 +10,11 @@ export function PluginTemplate() {
 
   return dashboard.plugin?.screen ? (
     <ScreenLayout screen="PLUGIN">
-      {dashboard.plugin.screen === 3 ? <ObjectDetectingTemplate /> : null}
+      {dashboard.plugin.screen === 3 ? (
+        <ObjectDetectingTemplate />
+      ) : dashboard.plugin.screen === 2 ? (
+        <ScriptTemplate />
+      ) : null}
     </ScreenLayout>
   ) : null;
 }

@@ -1,8 +1,7 @@
 import { VStack } from "@chakra-ui/react";
-import { ViewerWorkingArea } from "components";
+import { Source } from "components";
 import { useContext } from "react";
 import { AppContext } from "store";
-import { IMenuButton } from "type";
 import { ObjectDetectingMenuTemplate, ViewerTemplate } from ".";
 
 export function ObjectDetectingTemplate() {
@@ -14,6 +13,8 @@ export function ObjectDetectingTemplate() {
       <ObjectDetectingMenuTemplate />
       {dashboard.plugin?.objectDetecting.screen === 1 ? (
         <ViewerTemplate />
+      ) : dashboard.plugin?.objectDetecting.screen === 2 ? (
+        <Source />
       ) : null}
     </VStack>
   );
