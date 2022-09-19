@@ -1,105 +1,83 @@
-import {
-  FC,
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  createElement,
-  ReactNode,
-} from "react";
+import { Box, Button } from "@chakra-ui/react";
 import Blockly, { WorkspaceSvg } from "blockly";
-import { ToolboxCategory } from ".";
-import { Toolbox } from ".";
+import { useEffect, useRef, useState } from "react";
+import ToolBox from "./toolbox.json";
 import ZelosTheme from "./zelos";
+import CustomBlock from "./custom-block";
 
-interface IWorkSpaceProps {
-  /** init blocks */
-  initialXml?: string;
-  /** wrap className */
-  wrapClassname?: string;
-  categories?: ToolboxCategory[];
-  children?: ReactNode;
-}
-
-const BlocklyWorkSpace: FC<IWorkSpaceProps> = ({
-  wrapClassname,
-  categories,
-  children,
-}) => {
+export const BlocklyWorkSpace = () => {
   const [workspace, setWorkspace] = useState<WorkspaceSvg | null>(null);
   const blocklyDivRef = useRef<HTMLDivElement>(null);
-  const toolboxRef = useRef<HTMLElement>(null);
+  const [workspaceState, setWorkspaceState] = useState<{
+    [x: string]: any;
+  }>({});
 
-  const inject = useCallback(() => {
-    if (!blocklyDivRef.current) {
-      return;
-    }
-
-    console.log("inject");
-    const workspace = Blockly.inject(blocklyDivRef.current, {
-      renderer: "thrasos", // geras / thrasos / zelos
-      toolbox: toolboxRef.current!,
-      sounds: true,
-      trashcan: true,
-      collapse: true,
-      // comments: true,
-      disable: false,
-      readOnly: false,
-      toolboxPosition: "end",
-      theme: ZelosTheme,
-      grid: {
-        spacing: 20,
-        length: 0,
-        snap: true,
-      },
-      move: {
-        scrollbars: {
-          horizontal: true,
-          vertical: true,
+  const injectBlockly = (): WorkspaceSvg => {
+    return Blockly.inject(
+      blocklyDivRef.current as HTMLDivElement,
+      {
+        renderer: "zelos", // geras / thrasos / zelos
+        toolbox: ToolBox,
+        sounds: true,
+        trashcan: true,
+        collapse: true,
+        comments: true,
+        disable: false,
+        readOnly: false,
+        toolboxPosition: "start",
+        theme: ZelosTheme,
+        grid: {
+          spacing: 20,
+          length: 0,
+          snap: true,
         },
-        drag: true,
-        wheel: false,
-      },
-      zoom: {
-        controls: false,
-        maxScale: 2.5,
-        minScale: 0.2,
-        scaleSpeed: 1.5,
-        startScale: 1,
-      },
-      rtl: false,
-    } as any);
+        move: {
+          scrollbars: {
+            horizontal: true,
+            vertical: true,
+          },
+          drag: true,
+          wheel: false,
+        },
+        zoom: {
+          controls: true,
+          wheel: true,
+          startScale: 1.0,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2,
+          pinch: true,
+        },
+        rtl: false,
+      } as any
+    );
+  };
 
-    setWorkspace(workspace);
+  useEffect(() => {
+    if (!blocklyDivRef.current || workspace) return;
+    setWorkspace(injectBlockly());
   }, []);
 
   useEffect(() => {
-    inject();
+    workspace &&
+      workspace?.addChangeListener(() =>
+        setWorkspaceState(Blockly.serialization.workspaces.save(workspace))
+      );
+  }, [workspace]);
+
+  useEffect(() => {
+    workspace &&
+      Blockly.serialization.workspaces.load(workspaceState, workspace);
   }, []);
-  
+
+  const exportCode = () => {
+    const code = Blockly.JavaScript.workspaceToCode(workspace);
+    console.log(code);
+  };
+
   return (
-    <div
-      className={wrapClassname}
-      style={{ width: "100%", height: "100vh", overflow: "auto" }}
-      ref={blocklyDivRef}
-    >
-      {createElement(
-        "xml",
-        {
-          xmlns: "https://developers.google.com/blockly/xml",
-          is: "blockly",
-          style: { display: "none" },
-          ref: toolboxRef,
-        },
-        children
-      )}
-      <Toolbox
-        targetRef={blocklyDivRef}
-        workspace={workspace}
-        categories={categories as ToolboxCategory[]}
-      />
-    </div>
+    <Box w="100%" h="100%" ref={blocklyDivRef}>
+      <Button onClick={exportCode}>Export</Button>
+    </Box>
   );
 };
-
-export default BlocklyWorkSpace;

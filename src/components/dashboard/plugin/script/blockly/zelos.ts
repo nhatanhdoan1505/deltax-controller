@@ -64,7 +64,7 @@ const defaultBlockStyles: { [key: string]: Blockly.Theme.BlockStyle } = {
 };
 
 const componentStyles: Blockly.Theme.ComponentStyle = {
-  workspaceBackgroundColour: "#1e1e1e",
+  workspaceBackgroundColour: "#f0f0f0",
   toolboxBackgroundColour: "#333",
   toolboxForegroundColour: "#fff",
   flyoutBackgroundColour: "#252526",
