@@ -28,6 +28,8 @@ export function useScaleImage({
     ) {
       stageRef.current.width(widthImage);
       stageRef.current.height(heightImage);
+      console.log({ widthImage, heightImage });
+      console.log({ naturalHeight, naturalWidth });
       imageRef.current.scaleX(widthImage / naturalWidth);
       imageRef.current.scaleY(heightImage / naturalHeight);
     }

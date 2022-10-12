@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, HStack } from "@chakra-ui/react";
 import Blockly, { WorkspaceSvg } from "blockly";
 import { useEffect, useRef, useState } from "react";
 import ToolBox from "./toolbox.json";
@@ -16,39 +16,53 @@ export const BlocklyWorkSpace = () => {
     return Blockly.inject(
       blocklyDivRef.current as HTMLDivElement,
       {
-        renderer: "zelos", // geras / thrasos / zelos
+        renderer: "thrasos", // geras / thrasos / zelos
         toolbox: ToolBox,
-        sounds: true,
-        trashcan: true,
-        collapse: true,
-        comments: true,
-        disable: false,
-        readOnly: false,
-        toolboxPosition: "start",
-        theme: ZelosTheme,
+        // theme: ZelosTheme,
         grid: {
-          spacing: 20,
-          length: 0,
+          spacing: 25,
+          length: 3,
+          colour: "#ccc",
           snap: true,
-        },
-        move: {
-          scrollbars: {
-            horizontal: true,
-            vertical: true,
-          },
-          drag: true,
-          wheel: false,
         },
         zoom: {
           controls: true,
-          wheel: true,
-          startScale: 1.0,
+          startScale: 0.9,
           maxScale: 3,
           minScale: 0.3,
           scaleSpeed: 1.2,
-          pinch: true,
         },
-        rtl: false,
+        // sounds: true,
+        // trashcan: true,
+        // collapse: true,
+        // comments: true,
+        // disable: false,
+        // readOnly: false,
+        // toolboxPosition: "start",
+        // scrollbars: false,
+        // grid: {
+        //   spacing: 20,
+        //   length: 0,
+        //   snap: true,
+        // },
+        // move: {
+        //   scrollbars: {
+        //     horizontal: true,
+        //     vertical: false,
+        //   },
+        //   drag: true,
+        //   wheel: true,
+        // },
+        // zoom: {
+        //   controls: true,
+        //   wheel: false,
+        //   startScale: 1.0,
+        //   maxScale: 3,
+        //   minScale: 0.3,
+        //   scaleSpeed: 1.2,
+        //   pinch: true,
+        // },
+        // rtl: false,
       } as any
     );
   };
@@ -77,7 +91,11 @@ export const BlocklyWorkSpace = () => {
 
   return (
     <Box w="100%" h="100%" ref={blocklyDivRef}>
-      <Button onClick={exportCode}>Export</Button>
+      <HStack>
+        <Button onClick={exportCode}>Export</Button>
+        <Button onClick={() => workspace?.undo(false)}>Undo</Button>
+        <Button onClick={() => workspace?.undo(true)}>Redo</Button>
+      </HStack>
     </Box>
   );
 };

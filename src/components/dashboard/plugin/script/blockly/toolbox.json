@@ -3,88 +3,8 @@
   "contents": [
     {
       "kind": "category",
-      "name": "Logic",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "controls_if"
-        },
-        {
-          "kind": "block",
-          "type": "logic_compare"
-        },
-        {
-          "kind": "block",
-          "type": "logic_operation"
-        },
-        {
-          "kind": "block",
-          "type": "logic_negate"
-        },
-        {
-          "kind": "block",
-          "type": "logic_boolean"
-        },
-        {
-          "kind": "block",
-          "type": "logic_null"
-        },
-        {
-          "kind": "block",
-          "type": "logic_ternary"
-        }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Loops",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "controls_repeat_ext"
-        },
-        { "kind": "block", "type": "controls_repeat" },
-        { "kind": "block", "type": "controls_whileUntil" },
-        { "kind": "block", "type": "controls_for" },
-        { "kind": "block", "type": "controls_forEach" },
-        { "kind": "block", "type": "controls_flow_statements" }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Text",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "text"
-        },
-        { "kind": "block", "type": "text_multiline" },
-        { "kind": "block", "type": "text_join" },
-        { "kind": "block", "type": "text_create_join_container" },
-        { "kind": "block", "type": "text_create_join_item" },
-        { "kind": "block", "type": "text_append" },
-        { "kind": "block", "type": "text_length" },
-        { "kind": "block", "type": "text_isEmpty" },
-        { "kind": "block", "type": "text_indexOf" },
-        { "kind": "block", "type": "text_charAt" }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Variables",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "variables_get"
-        },
-        { "kind": "block", "type": "variables_set" },
-        { "kind": "block", "type": "variables_get_dynamic" },
-        { "kind": "block", "type": "variables_set_dynamic" }
-      ]
-    },
-    {
-      "kind": "category",
       "name": "Math",
+      "colour": "#FF0000",
       "contents": [
         {
           "kind": "block",
@@ -107,54 +27,592 @@
     },
     {
       "kind": "category",
-      "name": "Colour",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "colour_picker"
-        },
-        { "kind": "block", "type": "colour_random" },
-        { "kind": "block", "type": "colour_rgb" },
-        { "kind": "block", "type": "colour_blend" }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Lists",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "lists_create_empty"
-        },
-        { "kind": "block", "type": "lists_repeat" },
-        { "kind": "block", "type": "lists_reverse" },
-        { "kind": "block", "type": "lists_isEmpty" },
-        { "kind": "block", "type": "lists_length" }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Procedures",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "lists_create_empty"
-        },
-        { "kind": "block", "type": "procedures_defnoreturn" },
-        { "kind": "block", "type": "procedures_defreturn" },
-        { "kind": "block", "type": "procedures_mutatorcontainer" },
-        { "kind": "block", "type": "procedures_mutatorarg" },
-        { "kind": "block", "type": "procedures_callnoreturn" },
-        { "kind": "block", "type": "procedures_callreturn" }
-      ]
-    },
-    {
-      "kind": "category",
-      "name": "Move",
+      "name": "Delta X 1",
+      "colour": "#FF731D",
       "contents": [
         {
           "kind": "block",
           "type": "linear_move"
+        },
+        {
+          "kind": "block",
+          "type": "arc_or_circle_move"
+        },
+        { "kind": "block", "type": "dwell_delay" },
+        { "kind": "block", "type": "bezier_cubic_spline" },
+        { "kind": "block", "type": "theta_angle_control" },
+        { "kind": "block", "type": "homing" },
+        { "kind": "block", "type": "absolute_movement_mode" },
+        { "kind": "block", "type": "relative_movement_mode" },
+        {
+          "kind": "block",
+          "type": "output_on_laser_on_vaccum_on_gripper_close"
+        },
+        {
+          "kind": "block",
+          "type": "output_off_laser_off_vaccum_off_gripper_open"
+        },
+        {
+          "kind": "block",
+          "type": "disable_steppers"
+        },
+        {
+          "kind": "block",
+          "type": "set_hotend_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "wait_for_hotend_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_s"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_a"
+        },
+        {
+          "kind": "block",
+          "type": "set_z_offset"
+        },
+        {
+          "kind": "block",
+          "type": "select_end_effector"
+        },
+        {
+          "kind": "block",
+          "type": "set_interpolated_line_length"
+        },
+        {
+          "kind": "block",
+          "type": "set_arc_segment_length"
+        },
+        {
+          "kind": "block",
+          "type": "save_setting"
+        },
+        {
+          "kind": "block",
+          "type": "restore_setting"
+        },
+        {
+          "kind": "block",
+          "type": "reset_setting"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Delta X 2",
+      "colour": "#1746A2",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "linear_move"
+        },
+        {
+          "kind": "block",
+          "type": "arc_or_circle_move"
+        },
+        { "kind": "block", "type": "dwell_delay" },
+        { "kind": "block", "type": "bezier_cubic_spline" },
+        { "kind": "block", "type": "theta_angle_control" },
+        { "kind": "block", "type": "homing" },
+        { "kind": "block", "type": "absolute_movement_mode" },
+        { "kind": "block", "type": "relative_movement_mode" },
+        {
+          "kind": "block",
+          "type": "output_on_laser_on_vaccum_on_gripper_close"
+        },
+        {
+          "kind": "block",
+          "type": "output_off_laser_off_vaccum_off_gripper_open"
+        },
+        {
+          "kind": "block",
+          "type": "disable_steppers"
+        },
+        {
+          "kind": "block",
+          "type": "set_hotend_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "report_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "wait_for_hotend_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_s"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_a"
+        },
+        {
+          "kind": "block",
+          "type": "set_begin_end_velocity"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_offset"
+        },
+        {
+          "kind": "block",
+          "type": "set_z_offset"
+        },
+        {
+          "kind": "block",
+          "type": "select_end_effector"
+        },
+        {
+          "kind": "block",
+          "type": "select_end_effector_331"
+        },
+        {
+          "kind": "block",
+          "type": "set_interpolated_line_length"
+        },
+        {
+          "kind": "block",
+          "type": "set_arc_segment_length"
+        },
+        {
+          "kind": "block",
+          "type": "set_z_max_position"
+        },
+        {
+          "kind": "block",
+          "type": "save_setting"
+        },
+        {
+          "kind": "block",
+          "type": "restore_setting"
+        },
+        {
+          "kind": "block",
+          "type": "reset_setting"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Delta X S V4",
+      "colour": "#FFF7E9",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "linear_move"
+        },
+        {
+          "kind": "block",
+          "type": "controlled_arc_movement"
+        },
+        { "kind": "block", "type": "dwell_delay" },
+        { "kind": "block", "type": "theta_angle_control" },
+        { "kind": "block", "type": "homing" },
+        { "kind": "block", "type": "absolute_movement_mode" },
+        { "kind": "block", "type": "relative_movement_mode" },
+        {
+          "kind": "block",
+          "type": "get_current_position"
+        },
+        {
+          "kind": "block",
+          "type": "turn_ouput_on___set_pwm"
+        },
+        {
+          "kind": "block",
+          "type": "ouput_off___turn_off_pwm"
+        },
+        {
+          "kind": "block",
+          "type": "read_input_signals"
+        },
+        {
+          "kind": "block",
+          "type": "read_input_signals_automatically"
+        },
+        {
+          "kind": "block",
+          "type": "open_rs232_port"
+        },
+        {
+          "kind": "block",
+          "type": "open_rs485_port"
+        },
+        {
+          "kind": "block",
+          "type": "open_ttl_port"
+        },
+        {
+          "kind": "block",
+          "type": "get_ports_config"
+        },
+        {
+          "kind": "block",
+          "type": "enable_rj45"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_port"
+        },
+        {
+          "kind": "block",
+          "type": "set_mac_device"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_ip"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_dns"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_gateway"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_subnet"
+        },
+        {
+          "kind": "block",
+          "type": "get_robot_ip"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_4_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_5_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_6_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "disable_steppers"
+        },
+        {
+          "kind": "block",
+          "type": "set_auto_feedback_position"
+        },
+        {
+          "kind": "block",
+          "type": "set_jerk"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_acceleration"
+        },
+        {
+          "kind": "block",
+          "type": "set_jerk"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_a"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_offset"
+        },
+        {
+          "kind": "block",
+          "type": "set_theta_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_4_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_5_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_6_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "get_current_axis_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "save_setting"
+        },
+        {
+          "kind": "block",
+          "type": "restore_setting"
+        },
+        {
+          "kind": "block",
+          "type": "reset_setting"
+        },
+        {
+          "kind": "block",
+          "type": "enable_emergency_stop_button"
+        },
+        {
+          "kind": "block",
+          "type": "disenable_emergency_stop_button"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Delta X S V5",
+      "colour": "#E26868",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "linear_move"
+        },
+        {
+          "kind": "block",
+          "type": "controlled_arc_movement"
+        },
+        { "kind": "block", "type": "dwell_delay" },
+        { "kind": "block", "type": "theta_angle_control" },
+        { "kind": "block", "type": "homing" },
+        { "kind": "block", "type": "absolute_movement_mode" },
+        { "kind": "block", "type": "relative_movement_mode" },
+        {
+          "kind": "block",
+          "type": "get_current_position"
+        },
+        {
+          "kind": "block",
+          "type": "turn_ouput_on___set_pwm"
+        },
+        {
+          "kind": "block",
+          "type": "ouput_off___turn_off_pwm"
+        },
+        {
+          "kind": "block",
+          "type": "read_input_signals"
+        },
+        {
+          "kind": "block",
+          "type": "read_input_signals_automatically"
+        },
+        {
+          "kind": "block",
+          "type": "open_rs232_port"
+        },
+        {
+          "kind": "block",
+          "type": "open_rs485_port"
+        },
+        {
+          "kind": "block",
+          "type": "open_ttl_port"
+        },
+        {
+          "kind": "block",
+          "type": "get_ports_config"
+        },
+        {
+          "kind": "block",
+          "type": "enable_rj45"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_port"
+        },
+        {
+          "kind": "block",
+          "type": "set_mac_device"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_ip"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_dns"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_gateway"
+        },
+        {
+          "kind": "block",
+          "type": "set_ethernet_subnet"
+        },
+        {
+          "kind": "block",
+          "type": "get_robot_ip"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_4_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_5_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_6_parameters"
+        },
+        {
+          "kind": "block",
+          "type": "disable_steppers"
+        },
+        {
+          "kind": "block",
+          "type": "set_auto_feedback_position"
+        },
+        {
+          "kind": "block",
+          "type": "set_jerk"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_acceleration"
+        },
+        {
+          "kind": "block",
+          "type": "set_jerk"
+        },
+        {
+          "kind": "block",
+          "type": "set_max_feedrate_a"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_offset"
+        },
+        {
+          "kind": "block",
+          "type": "set_theta_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_4_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_5_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "set_axis_6_movement_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "get_current_axis_parameter"
+        },
+        {
+          "kind": "block",
+          "type": "save_setting"
+        },
+        {
+          "kind": "block",
+          "type": "restore_setting"
+        },
+        {
+          "kind": "block",
+          "type": "reset_setting"
+        },
+        {
+          "kind": "block",
+          "type": "enable_emergency_stop_button"
+        },
+        {
+          "kind": "block",
+          "type": "disenable_emergency_stop_button"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Conveyor",
+      "colour": "#3C2317",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "detect_x_conveyor_com_port"
+        },
+        {
+          "kind": "block",
+          "type": "set_motion_mode"
+        },
+        {
+          "kind": "block",
+          "type": "set_speed_in_position_move"
+        },
+        {
+          "kind": "block",
+          "type": "set_position"
+        },
+        {
+          "kind": "block",
+          "type": "set_speed_in_serial_mode"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Slider",
+      "colour": "#FF99D7",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "homing_slider"
+        },
+        {
+          "kind": "block",
+          "type": "set_moving_speed"
+        },
+        {
+          "kind": "block",
+          "type": "set_desired_position"
+        },
+        {
+          "kind": "block",
+          "type": "disable_stepper_motor"
+        },
+        {
+          "kind": "block",
+          "type": "set_accleration"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Slider",
+      "colour": "#06283D",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "identity_x_encoder"
+        },
+        {
+          "kind": "block",
+          "type": "select_response_mode"
+        },
+        {
+          "kind": "block",
+          "type": "get_current_position_x_encoder"
+        },
+        {
+          "kind": "block",
+          "type": "set_pulse__mm_value"
+        },
+        {
+          "kind": "block",
+          "type": "read_proximity_sensor"
         }
       ]
     }
