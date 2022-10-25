@@ -1,14 +1,14 @@
-import { HStack, Text, Icon } from "@chakra-ui/react";
+import { HStack, Icon, Text } from "@chakra-ui/react";
 import { DeviceSidebar, PluginSidebar } from "components";
-import { WorkingArea } from "..";
-import { TbZoomPan } from "react-icons/tb";
-import { GiStoneWheel, GiMovementSensor, GiRobotLeg } from "react-icons/gi";
-import { IDevice, IMainPageTemplateProps, IPlugin } from "type";
-import { SiCommonworkflowlanguage, SiBlueprint } from "react-icons/si";
-import { MdOutlineSource, MdOutlineDraw } from "react-icons/md";
+import { useContext } from "react";
+import { GiMovementSensor, GiRobotLeg } from "react-icons/gi";
 import { GrCloudComputer } from "react-icons/gr";
-import { useContext, useEffect, useState } from "react";
+import { MdOutlineDraw, MdOutlineSource } from "react-icons/md";
+import { SiBlueprint, SiCommonworkflowlanguage } from "react-icons/si";
+import { TbZoomPan } from "react-icons/tb";
 import { AppContext } from "store";
+import { IDevice, IPlugin } from "type";
+import { WorkingArea } from "..";
 
 export function DashboardTemplate() {
   const { state } = useContext(AppContext);

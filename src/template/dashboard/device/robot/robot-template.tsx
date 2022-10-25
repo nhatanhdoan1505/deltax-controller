@@ -1,12 +1,11 @@
 import { AppContext, DeviceComponentType } from "store";
 import { useContext } from "react";
 import { VStack } from "@chakra-ui/react";
-import { RobotMenu } from "components";
+import { ConnectionConfig, RobotMenu } from "components";
 import { IoTemplate, JoggingTemplate } from ".";
 import { IMenuButton } from "type";
 
 export function RobotTemplate({ robot }: { robot: DeviceComponentType }) {
-
   const menu: IMenuButton[] = [
     { index: 1, name: "Jogging", color: "green" },
     { index: 2, name: "I/O", color: "green" },
@@ -17,6 +16,7 @@ export function RobotTemplate({ robot }: { robot: DeviceComponentType }) {
 
   return (
     <VStack w="100%" h="100%">
+      <ConnectionConfig />
       <RobotMenu menu={menu} />
       {robot.screen === 1 ? (
         <JoggingTemplate />

@@ -1,4 +1,4 @@
-import { Center } from "@chakra-ui/react";
+import { border, Center } from "@chakra-ui/react";
 import { useScaleImage, useStageSize } from "hook";
 import Konva from "konva";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -22,7 +22,7 @@ export function Source({ width, height }: { width: number; height: number }) {
   const [heightImage, setHeightImage] = useState<number>(null!);
   const [bufferList, setBufferList] = useState<string[]>([]);
   const [doneLoading, setDoneLoading] = useState<boolean>(true);
-  
+
   const { widthSize, heightSize, naturalHeight, naturalWidth } = useStageSize({
     width,
     height,
@@ -93,7 +93,7 @@ export function Source({ width, height }: { width: number; height: number }) {
         w="auto"
       /> */}
       {/* <Image src={`${buffer}`} alt="LIVE CAMERA" h="100%" w="auto" /> */}
-      <Stage
+      {/* <Stage
         style={{
           boxShadow:
             "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
@@ -103,7 +103,23 @@ export function Source({ width, height }: { width: number; height: number }) {
         <Layer x={0} y={0}>
           <Image image={image} ref={imageRef} />
         </Layer>
-      </Stage>
+      </Stage> */}
+      <iframe
+        src="https://to-do-clone-full-api.herokuapp.com/account"
+        width="100%"
+        height="790px"
+        frameBorder="0"
+        style={{ border: "0" }}
+      ></iframe>
     </Center>
-  ) : null;
+  ) : (
+    <iframe
+      src="http://lb1-891115612.ap-southeast-1.elb.amazonaws.com/receiver/index.html"
+      style={{ border: "border:0px #ffffff none" }}
+      name="myiFrame"
+      height="100%"
+      width="100%"
+      allowFullScreen
+    ></iframe>
+  );
 }
