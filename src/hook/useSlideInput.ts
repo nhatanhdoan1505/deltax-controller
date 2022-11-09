@@ -15,6 +15,7 @@ export const useSlideInput = ({
 
   const setNumber = (value: number) => {
     let _value = min && value < min ? min : max && value > max ? max : value;
+
     _setNumber(_value);
   };
 

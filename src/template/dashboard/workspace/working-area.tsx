@@ -1,3 +1,4 @@
+import { Scene } from "components";
 import { useContext } from "react";
 import { AppContext } from "store";
 import { DeviceTemplate, PluginTemplate } from "template";
@@ -7,8 +8,9 @@ export function WorkingArea() {
   const { state } = useContext(AppContext);
   const { dashboard } = state;
 
-  return !dashboard.device?.screen &&
-    !dashboard.plugin?.screen ? null : dashboard.type === "full-screen" && // <Scene />
+  return !dashboard.device?.screen && !dashboard.plugin?.screen ? (
+    <Scene />
+  ) : dashboard.type === "full-screen" && // <Scene />
     dashboard.plugin?.screen &&
     !dashboard.device?.screen ? (
     <FullScreen>

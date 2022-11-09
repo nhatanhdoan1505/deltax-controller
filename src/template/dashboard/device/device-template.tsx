@@ -2,7 +2,7 @@ import { findDeviceComponent } from "utils";
 import { ScreenLayout } from "components";
 import { useContext } from "react";
 import { AppContext } from "store";
-import { RobotTemplate, ConveyorTemplate } from ".";
+import { RobotTemplate, ConveyorTemplate, EncoderTemplate } from ".";
 
 export function DeviceTemplate() {
   const { state } = useContext(AppContext);
@@ -16,7 +16,9 @@ export function DeviceTemplate() {
         <RobotTemplate robot={component} />
       ) : component?.type === "CONVEYOR" ? (
         <ConveyorTemplate />
-      ) : null}
+      ) : (
+        <EncoderTemplate />
+      )}
     </ScreenLayout>
   ) : null;
 }
